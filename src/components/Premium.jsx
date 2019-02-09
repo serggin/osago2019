@@ -1,4 +1,5 @@
 import React from 'react'
+import {calculator} from "./App.jsx";
 
 export default class Premium extends React.Component{
     constructor(props){

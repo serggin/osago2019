@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { createStore } from 'redux'
+import '../public/css/style.css';
 
-//import '../css/main.css';
 
 
 

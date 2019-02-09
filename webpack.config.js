@@ -11,7 +11,9 @@ module.exports = {
         contentBase: "./public"
 
     },
-
+    plugins: [
+        new webpack.HotModuleReplacementPlugin()
+    ],
     module: {
         rules: [
             {

@@ -2,15 +2,17 @@ import React from 'react'
 import { Provider } from 'react-redux'
 
 import CalcModel from "./calc/CalcModel";
-//import CalcView from "./calc/CalcView";
+import CalcView from "./calc/CalcView";
 import Calculator from "./calc/Calculator";
 import ConnectedPremium from '../containers/ConnectedPremium.jsx'
+import CalcTable from "./calc/CalcTable.jsx";
+import CalcForm from "./calc/CalcForm.jsx";
 
 
 const context = React.createContext();
 
 const calcModel = new CalcModel()
-//const calcView = new CalcView(calcModel)
+const calcView = new CalcView(calcModel)
 
 
 const calculator = new Calculator(calcModel)
@@ -27,6 +29,8 @@ const App = ({ store }) =>{
         <Provider context={context} store={store}>
             <div>
                 <div><ConnectedPremium context={context} /></div>
+                <div><CalcTable/></div>
+                <div><CalcForm/></div>
             </div>
         </Provider>
     </calcContext.Provider>
@@ -35,6 +39,6 @@ const App = ({ store }) =>{
 
 
 export default App
-//export {calcContext, calculator, context}
-export {calcContext, context}
+export {calcContext, calculator, context}
+
 
