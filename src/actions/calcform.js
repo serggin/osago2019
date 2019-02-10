@@ -1,4 +1,4 @@
-import {SET_OWNER, SET_REGISTRATION, SET_TYPETC, SET_POWERTC } from './actionTypes'
+import {SET_OWNER, SET_REGISTRATION, SET_TYPETC, SET_POWERTC, SET_TERM,SET_FIXED_TERM} from './actionTypes'
 
 export const setOwner = (owner)=>{
     return {
@@ -24,9 +24,22 @@ export const setTypeTC = (typeTC)=>{
 
 
 export const setPowerTC = (powerTC)=>{
-    console.warn('setPowerTC', powerTC)
     return {
         type:SET_POWERTC,
         powerTC,
+    }
+}
+
+export const setTerm = (term)=>{
+    return {
+        type:SET_TERM,
+        term,
+    }
+}
+
+export const setFixedTerm = (term)=>{
+    return {
+        type:SET_FIXED_TERM,
+        term,
     }
 }

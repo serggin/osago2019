@@ -7,6 +7,7 @@ export default class CalcModel {
     load() {
         this.typeTC = baseCoeff.typeTC;
         this.powerTC = baseCoeff.powerTC;
+        this.term = baseCoeff.term;
 
         /*this.mainBuildingPremium = baseCoeff.mainBuildingPremium;
         this.saunaPremium = baseCoeff.saunaPremium;
@@ -28,6 +29,13 @@ export default class CalcModel {
             return this.powerTC[key];
         return this.powerTC;
     }
+
+    getTerm(key=null){
+        if(key)
+            return this.term[key];
+        return this.term;
+    }
+
   /*  getMainBuildingPremium(key=null){
         if(key || key==0)
             return this.mainBuildingPremium.find((item)=>item.ss==key);
