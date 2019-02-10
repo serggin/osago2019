@@ -35,11 +35,13 @@ FormSelect.propTypes = {
     divlabelProps: PropTypes.object,
 //    orientation: PropTypes.string,
     disabled: PropTypes.string,
+    options: PropTypes.array,
 }
 FormSelect.defaultProps = {
    // wrapperProps: {},
     labelProps: {},
-    divlabelProps: {}
+    divlabelProps: {},
+    options: [],
 }
 
 module.exports = FormSelect;

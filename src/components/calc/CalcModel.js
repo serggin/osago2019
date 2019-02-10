@@ -5,6 +5,8 @@ export default class CalcModel {
         this.load();
     }
     load() {
+        this.typeTC = baseCoeff.typeTC;
+
         /*this.mainBuildingPremium = baseCoeff.mainBuildingPremium;
         this.saunaPremium = baseCoeff.saunaPremium;
         this.dop1Premium = baseCoeff.dop1Premium;
@@ -12,6 +14,12 @@ export default class CalcModel {
         this.imPremium = baseCoeff.imPremium;
         this.goPremium = baseCoeff.goPremium;*/
 
+    }
+
+    getTypeTC(key=null){
+        if(key)
+            return this.typeTC[key];
+        return this.typeTC;
     }
 
 

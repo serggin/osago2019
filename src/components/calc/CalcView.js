@@ -19,6 +19,35 @@ export default class CalcView{
        // this.setDop1Visibility()
     }
 
+    getOptions(name, parameter = null) {
+        var options = [];
+        console.log('CalcView.getOptions() name='+name)
+        switch (name) {
+            case "typeTC":
+                var obj = this.model.getTypeTC();
+                console.log('typeTC obj=', obj)
+                var owner = this.store.getState().owner;
+                console.log('owner='+owner);
+                /* console.log("CalcView. getOptions() typeTC OBJ =");
+                 console.dir(obj);*/
+                for (var key in obj) {
+                    if (owner==='yur'){
+                        if(key==='tc22');
+                        else{
+                            options.push({value: key, label: obj[key].label, selected: false});
+                        }
+
+                    }else{
+                        if(key==='tc21');
+                        else{
+                            options.push({value: key, label: obj[key].label, selected: false});
+                        }
+                    }
+                }
+                break;
+        }
+        return options;
+    }
 /*    setSaunaVisibility() {
         const {mainBuilding, showSauna} = this.state
         if (mainBuilding.buildingType && mainBuilding.mainBuildingSS) {

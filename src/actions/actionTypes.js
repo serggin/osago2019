@@ -4,6 +4,7 @@ export const CLEAR_ERROR_MESSAGE = 'CLEAR_ERROR_MESSAGE'
 
 export const SET_OWNER = 'SET_OWNER'
 export const SET_REGISTRATION = 'SET_REGISTRATION'
+export const SET_TYPETC = 'SET_TYPETC'
 
 
 
