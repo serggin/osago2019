@@ -1,6 +1,7 @@
 import React from 'react'
 //import PropTypes from 'prop-types'
 import ConnectedOwnerRG from './calcform/containers/ConnectedOwnerRG.jsx'
+import ConnectedRegistrationRG from './calcform/containers/ConnectedRegistrationRG.jsx'
 import {context} from '../App.jsx'
 
 export default class CalcForm extends React.Component {
@@ -11,8 +12,10 @@ export default class CalcForm extends React.Component {
 
     render(){
         return(
-            <div><ConnectedOwnerRG context={context} /></div>
-
+            <div className="well">
+                <div><ConnectedOwnerRG context={context} /></div>
+                <div><ConnectedRegistrationRG context={context} /></div>
+            </div>
          )
     }
 

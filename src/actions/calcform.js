@@ -1,4 +1,4 @@
-import { SET_OWNER} from './actionTypes'
+import { SET_OWNER, SET_REGISTRATION } from './actionTypes'
 
 export const setOwner = (owner)=>{
     return {
@@ -7,3 +7,9 @@ export const setOwner = (owner)=>{
     }
 }
 
+export const setRegistration = (registration)=>{
+    return {
+        type:SET_REGISTRATION,
+        registration,
+    }
+}

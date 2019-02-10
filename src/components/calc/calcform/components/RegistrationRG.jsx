@@ -2,7 +2,7 @@ import React from 'react'
 //import {calcContext} from '../../../App.jsx'
 import FormRadioGroup from "../../../form/FormRadioGroup.jsx";
 
-export default class OwnerRG extends React.Component {
+export default class RegistrationRG extends React.Component {
     constructor(props) {
         super(props)
         console.warn('constructor props=', props)
@@ -11,22 +11,20 @@ export default class OwnerRG extends React.Component {
         }
     }
     getButtons() {
-        return  [
-            {value: "fiz", label: "Физическое лицо", checked: true},
-            {value: "yur", label: "Юридическое лицо", checked: false},
+        return [
+            {value: "regRu", label: "ТС зарегистрировано в России", checked: true},
+            {value: "regFo", label: "ТС зарегистрировано в иностранном государстве", checked: false},
+            {value: "regNo", label: "ТС следует к месту регистрации", checked: false},
         ];
     }
     render() {
         return (
-            <FormRadioGroup name="owner" formlabel="Владелец"
+             <FormRadioGroup name="registration" formlabel="Регистрация ТС"
                             buttons={this.getButtons()}
                             checked={this.state.owner.buttonChecked}
                             labelProps={{className: "col-lg-12 label label-info"}}
                             orientation="vertical"
-                            assigned={(v) => this.props.setOwner(v)}/>
-
-        )
+                            assigned={(v) => this.props.setRegistration(v)}/>
+         )
     }
 }
-
-//export default connect(({ setOwner }) => ({ setOwner }))(OwnerRG);
