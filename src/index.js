@@ -19,5 +19,5 @@ store.subscribe(()=>{
 
 //console.log('store  '+store.getState())
 ReactDOM.render(<App store={store} />,
-    document.getElementById('root')
+    document.getElementById('content')
 )

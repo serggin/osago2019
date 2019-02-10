@@ -9,8 +9,8 @@ module.exports = {
     },
     devServer: {
         contentBase: "./public"
-
     },
+    devtool: "#eval-source-map",
     plugins: [
         new webpack.HotModuleReplacementPlugin()
     ],
