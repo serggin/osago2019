@@ -1,4 +1,4 @@
-import { SET_OWNER, SET_REGISTRATION, SET_TYPETC } from './actionTypes'
+import {SET_OWNER, SET_REGISTRATION, SET_TYPETC, SET_POWERTC } from './actionTypes'
 
 export const setOwner = (owner)=>{
     return {
@@ -19,5 +19,14 @@ export const setTypeTC = (typeTC)=>{
     return {
         type:SET_TYPETC,
         typeTC,
+    }
+}
+
+
+export const setPowerTC = (powerTC)=>{
+    console.warn('setPowerTC', powerTC)
+    return {
+        type:SET_POWERTC,
+        powerTC,
     }
 }

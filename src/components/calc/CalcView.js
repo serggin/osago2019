@@ -45,6 +45,12 @@ export default class CalcView{
                     }
                 }
                 break;
+            case "powerTC":
+                var obj = this.model.getPowerTC();
+                for (var key in obj) {
+                    options.push({value: key, label: obj[key].label, selected: false});
+                }
+                break;
         }
         return options;
     }

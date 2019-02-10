@@ -3,6 +3,7 @@ import React from 'react'
 import ConnectedOwnerRG from './calcform/containers/ConnectedOwnerRG.jsx'
 import ConnectedRegistrationRG from './calcform/containers/ConnectedRegistrationRG.jsx'
 import ConnectedTypeTC from './calcform/containers/ConnectedTypeTC.jsx'
+import ConnectedPowerTC from './calcform/containers/ConnectedPowerTC.jsx'
 import {context} from '../App.jsx'
 
 export default class CalcForm extends React.Component {
@@ -17,6 +18,7 @@ export default class CalcForm extends React.Component {
                 <div><ConnectedOwnerRG context={context} /></div>
                 <div><ConnectedRegistrationRG context={context} /></div>
                 <div><ConnectedTypeTC context={context} /></div>
+                <div><ConnectedPowerTC context={context} /></div>
             </div>
          )
     }

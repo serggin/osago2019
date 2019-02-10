@@ -1,4 +1,4 @@
-import {SET_OWNER, SET_REGISTRATION, SET_TYPETC } from '../actions/actionTypes'
+import {SET_OWNER, SET_REGISTRATION, SET_TYPETC, SET_POWERTC} from '../actions/actionTypes'
 
 export function ownerReducer (state = 'fiz', action) {
     switch (action.type) {
@@ -25,6 +25,18 @@ export function typeTCReducer (state = 'tc22', action) {
     switch (action.type) {
         case SET_TYPETC:
             return action.typeTC
+
+        default:
+            return state
+    }
+}
+
+
+export function powerTCReducer (state = 'p0', action) {
+//    console.error('typeTCReducer action.type='+action.type)
+    switch (action.type) {
+        case SET_POWERTC:
+            return action.powerTC
 
         default:
             return state
