@@ -51,10 +51,11 @@ export default class CalcModel {
         return this.regions;
     }
 
-    getCity(key=null){
+    getCity(regionKey, key=null){
+        var region = this.getRegions(regionKey);
         if(key)
-            return this.city[key];
-        return this.city;
+            return region.city[key];
+        return region.city;
     }
 
   /*  getMainBuildingPremium(key=null){

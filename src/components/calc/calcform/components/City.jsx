@@ -1,22 +1,23 @@
 import React from 'react'
 import FormSelect from "../../../form/FormSelect.jsx";
-import {calcContext} from '../../../App.jsx'
+import {calcContext, calcView} from '../../../App.jsx'
 import {setCity} from "../../../../actions";
 
-export default class Regions extends React.Component {
+export default class City extends React.Component {
     constructor(props) {
         super(props)
-        console.warn('constructor props=', props)
-        this.state = {
-            city: {selected: "r90"} //??
-        }
+        console.warn('city constructor props=', props)
+        const {city} = calcView.getInitialStates();
+        this.state = { city: city }
     }
+
     render() {
         return (
             <calcContext.Consumer>
                 {(contextValue) => {
-//                    console.log('contextValue=', contextValue)
-                    const options = contextValue.calcView.getOptions("regions")
+//                    console.log('City state=', this.state)
+                    const options = contextValue.calcView.getOptions("city", this.props.regions);
+//                    const options = contextValue.calcView.getOptions("city", this.state.regions)
 //                    console.log('options=', options)
                     return (
                         <FormSelect name="regions" formlabel="Место регистрации ТС"

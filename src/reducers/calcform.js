@@ -71,7 +71,7 @@ export function periodReducer (state = 't0', action) {
     }
 }
 
-export function regionsReducer (state = 't0', action) {
+export function regionsReducer (state = 'r90', action) {
     switch (action.type) {
         case SET_REGIONS:
             return action.regions
@@ -81,7 +81,7 @@ export function regionsReducer (state = 't0', action) {
     }
 }
 
-export function cityReducer (state = 't0', action) {
+export function cityReducer (state = null, action) {
     switch (action.type) {
         case SET_CITY:
             return action.city

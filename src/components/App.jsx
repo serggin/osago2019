@@ -41,6 +41,6 @@ const App = ({ store }) =>{
 
 
 export default App
-export {calcContext, calculator, context}
+export {calcContext, calculator, context, calcView}
 
 

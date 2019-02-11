@@ -16,6 +16,27 @@ export default class CalcView{
         store.subscribe(this.stateChanged)
     }
 
+    getInitialStates() {
+        return {
+            owner: {buttonChecked: "fiz"},
+            typeTC:{selected: "tc22", enabled:true },
+            registration: {buttonChecked: "regRu"},
+            trailer: {selected: false, enabled:false},
+            powerTC:{selected: 'p70'},
+            period: {selected:"t8"},
+            regions:{enabled: true},
+            city:{regions:"r90", enabled: false},
+            term:{enabled:'false'},
+            limit: {selected: false},
+            driving_experience:{enabled:true},
+            region: {region: null},
+            crime: {selected: false, },
+            kbm:{selected: "kbm3"},
+
+        }
+    }
+
+
     stateChanged() {
         console.warn('stateChanged()')
         this.state = this.store.getState()
@@ -58,8 +79,8 @@ export default class CalcView{
         this.updateStates({
             fixedTerm: fixedTerm,
             term: term,
-//            fixedPeriod: fixedPeriod,
-//            period: period,
+            fixedPeriod: fixedPeriod,
+            period: period,
 //            crime: crime
         })
     }
@@ -142,11 +163,14 @@ export default class CalcView{
                 break;
 
             case "period":
-                var obj = this.model.getPeriod();
-              //  console.log('period obj=', obj);
-                for (var key in obj) {
-                    options.push({value: key, label: obj[key].label, selected: false});
-                }
+               const  registration = this.store.getState().registration;
+               if(registration==="regRu") {
+                   const obj = this.model.getPeriod();
+                   //  console.log('period obj=', obj);
+                   for (var key in obj) {
+                       options.push({value: key, label: obj[key].label, selected: false});
+                   }
+               }
                 break;
             case "regions":
                 var obj = this.model.getRegions();
@@ -156,12 +180,15 @@ export default class CalcView{
                 }
                 break;
             case "city":
-                var obj = this.model.getCity();
-                //  console.log('period obj=', obj);
+                var obj = this.model.getCity(parameter);
+                console.log('view getOptions city parameter='+parameter)
+                /* console.log('OsagoView.getOptions name=city, parameter=' + parameter);
+                 console.log(obj);*/
                 for (var key in obj) {
-                    options.push({value: key, label: obj[key].label, selected: false});
+                    options.push({value: key, label: key, selected: false});
                 }
                 break;
+
         }
         return options;
     }
