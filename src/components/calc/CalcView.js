@@ -148,7 +148,13 @@ export default class CalcView{
                     options.push({value: key, label: obj[key].label, selected: false});
                 }
                 break;
-
+            case "regions":
+                var obj = this.model.getRegions();
+                //  console.log('period obj=', obj);
+                for (var key in obj) {
+                    options.push({value: key, label: obj[key].label, selected: false});
+                }
+                break;
 
         }
         return options;

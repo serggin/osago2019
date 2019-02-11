@@ -13,6 +13,7 @@ export const SET_TERM = 'SET_TERM'
 export const SET_FIXED_TERM = 'SET_FIXED_TERM'
 
 export const SET_PERIOD = 'SET_PERIOD'
+export const SET_REGIONS = 'SET_REGIONS'
 
 
 
