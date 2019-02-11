@@ -8,6 +8,7 @@ export default class CalcModel {
         this.typeTC = baseCoeff.typeTC;
         this.powerTC = baseCoeff.powerTC;
         this.term = baseCoeff.term;
+        this.period = baseCoeff.period;
 
         /*this.mainBuildingPremium = baseCoeff.mainBuildingPremium;
         this.saunaPremium = baseCoeff.saunaPremium;
@@ -34,6 +35,12 @@ export default class CalcModel {
         if(key)
             return this.term[key];
         return this.term;
+    }
+
+    getPeriod(key=null){
+        if(key)
+            return this.period[key];
+        return this.period;
     }
 
   /*  getMainBuildingPremium(key=null){

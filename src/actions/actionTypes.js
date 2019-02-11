@@ -12,6 +12,8 @@ export const SET_POWERTC = 'SET_POWERTC'
 export const SET_TERM = 'SET_TERM'
 export const SET_FIXED_TERM = 'SET_FIXED_TERM'
 
+export const SET_PERIOD = 'SET_PERIOD'
+
 
 
 

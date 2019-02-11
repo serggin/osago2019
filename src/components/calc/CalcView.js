@@ -140,6 +140,16 @@ export default class CalcView{
                     //console.dir(options);
                 }
                 break;
+
+            case "period":
+                var obj = this.model.getPeriod();
+              //  console.log('period obj=', obj);
+                for (var key in obj) {
+                    options.push({value: key, label: obj[key].label, selected: false});
+                }
+                break;
+
+
         }
         return options;
     }

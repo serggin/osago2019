@@ -1,4 +1,4 @@
-import {SET_OWNER, SET_REGISTRATION, SET_TYPETC, SET_POWERTC,SET_TERM, SET_FIXED_TERM} from '../actions/actionTypes'
+import {SET_OWNER, SET_REGISTRATION, SET_TYPETC, SET_POWERTC,SET_TERM, SET_FIXED_TERM, SET_PERIOD} from '../actions/actionTypes'
 
 export function ownerReducer (state = 'fiz', action) {
     switch (action.type) {
@@ -55,6 +55,16 @@ export function fixedTermReducer (state = 't12', action) {
     switch (action.type) {
         case SET_FIXED_TERM:
             return action.term
+
+        default:
+            return state
+    }
+}
+
+export function periodReducer (state = 't0', action) {
+    switch (action.type) {
+        case SET_PERIOD:
+            return action.period
 
         default:
             return state

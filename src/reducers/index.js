@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import {premiumReducer, errorMessageReducer} from './premium'
-import {ownerReducer, registrationReducer, typeTCReducer, powerTCReducer,termReducer,fixedTermReducer} from './calcform'
+import {ownerReducer, registrationReducer, typeTCReducer, powerTCReducer,termReducer,fixedTermReducer,periodReducer} from './calcform'
 
 const appReducer = combineReducers({
     premium: premiumReducer,
@@ -11,6 +11,7 @@ const appReducer = combineReducers({
     powerTC: powerTCReducer,
     term: termReducer,
     fixedTerm: fixedTermReducer,
+    period: periodReducer,
 })
 
 export default appReducer

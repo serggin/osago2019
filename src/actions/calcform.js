@@ -1,4 +1,4 @@
-import {SET_OWNER, SET_REGISTRATION, SET_TYPETC, SET_POWERTC, SET_TERM,SET_FIXED_TERM} from './actionTypes'
+import {SET_OWNER, SET_REGISTRATION, SET_TYPETC, SET_POWERTC, SET_TERM,SET_FIXED_TERM, SET_PERIOD} from './actionTypes'
 
 export const setOwner = (owner)=>{
     return {
@@ -41,5 +41,12 @@ export const setFixedTerm = (term)=>{
     return {
         type:SET_FIXED_TERM,
         term,
+    }
+}
+
+export const setPeriod = (period)=>{
+    return {
+        type:SET_PERIOD,
+        period,
     }
 }
