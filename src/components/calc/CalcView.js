@@ -155,7 +155,13 @@ export default class CalcView{
                     options.push({value: key, label: obj[key].label, selected: false});
                 }
                 break;
-
+            case "city":
+                var obj = this.model.getCity();
+                //  console.log('period obj=', obj);
+                for (var key in obj) {
+                    options.push({value: key, label: obj[key].label, selected: false});
+                }
+                break;
         }
         return options;
     }

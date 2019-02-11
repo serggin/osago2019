@@ -10,6 +10,7 @@ export default class CalcModel {
         this.term = baseCoeff.term;
         this.period = baseCoeff.period;
         this.regions = baseCoeff.regions;
+        this.city = baseCoeff.regions; //???
 
         /*this.mainBuildingPremium = baseCoeff.mainBuildingPremium;
         this.saunaPremium = baseCoeff.saunaPremium;
@@ -48,6 +49,12 @@ export default class CalcModel {
         if(key)
             return this.regions[key];
         return this.regions;
+    }
+
+    getCity(key=null){
+        if(key)
+            return this.city[key];
+        return this.city;
     }
 
   /*  getMainBuildingPremium(key=null){

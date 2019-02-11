@@ -1,4 +1,4 @@
-import {SET_OWNER, SET_REGISTRATION, SET_TYPETC, SET_POWERTC, SET_TERM,SET_FIXED_TERM, SET_PERIOD,SET_REGIONS} from './actionTypes'
+import {SET_OWNER, SET_REGISTRATION, SET_TYPETC, SET_POWERTC, SET_TERM,SET_FIXED_TERM, SET_PERIOD,SET_REGIONS,SET_CITY} from './actionTypes'
 
 export const setOwner = (owner)=>{
     return {
@@ -57,4 +57,9 @@ export const setRegions = (regions)=>{
         regions,
     }
 }
-
+export const setCity = (city)=>{
+    return {
+        type:SET_CITY,
+        city,
+    }
+}
