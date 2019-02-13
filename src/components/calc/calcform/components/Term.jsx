@@ -1,6 +1,6 @@
 import React from 'react'
 import FormSelect from "../../../form/FormSelect.jsx";
-import {calcContext} from '../../../App.jsx'
+import {calcView} from '../../../App.jsx'
 import {setTerm} from "../../../../actions";
 
 export default class Term extends React.Component {
@@ -12,11 +12,8 @@ export default class Term extends React.Component {
         }
     }
     render() {
-        return (
-            <calcContext.Consumer>
-                {(contextValue) => {
-//                    console.log('contextValue=', contextValue)
-                    const options = contextValue.calcView.getOptions("term")
+
+                    const options = calcView.getOptions("term")
 //                    console.log('options=', options)
                     return (
                         <FormSelect name="term" formlabel="Срок договора"
@@ -27,8 +24,5 @@ export default class Term extends React.Component {
                                     selected={this.state.term.selected}
                         />
                     )
-                }}
-            </calcContext.Consumer>
-        )
     }
 }

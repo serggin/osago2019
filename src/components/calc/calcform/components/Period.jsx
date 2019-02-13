@@ -1,6 +1,6 @@
 import React from 'react'
 import FormSelect from "../../../form/FormSelect.jsx";
-import {calcContext} from '../../../App.jsx'
+import {calcView} from '../../../App.jsx'
 import {setPeriod} from "../../../../actions";
 
 export default class Period extends React.Component {
@@ -12,11 +12,8 @@ export default class Period extends React.Component {
         }
     }
     render() {
-        return (
-            <calcContext.Consumer>
-                {(contextValue) => {
-//                    console.log('contextValue=', contextValue)
-                    const options = contextValue.calcView.getOptions("period")
+
+                    const options = calcView.getOptions("period")
 //                    console.log('options=', options)
                     return (
                         <FormSelect name="period" formlabel="Период использования ТС"
@@ -27,8 +24,5 @@ export default class Period extends React.Component {
                                     selected={this.state.period.selected}
                         />
                     )
-                }}
-            </calcContext.Consumer>
-        )
     }
 }

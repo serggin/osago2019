@@ -1,6 +1,6 @@
 import React from 'react'
 import FormSelect from "../../../form/FormSelect.jsx";
-import {calcContext, calcView} from '../../../App.jsx'
+import {calcView} from '../../../App.jsx'
 import {setCity} from "../../../../actions";
 
 export default class City extends React.Component {
@@ -12,11 +12,8 @@ export default class City extends React.Component {
     }
 
     render() {
-        return (
-            <calcContext.Consumer>
-                {(contextValue) => {
-//                    console.log('City state=', this.state)
-                    const options = contextValue.calcView.getOptions("city", this.props.regions);
+
+                    const options = calcView.getOptions("city", this.props.regions);
 //                    const options = contextValue.calcView.getOptions("city", this.state.regions)
 //                    console.log('options=', options)
                     return (
@@ -28,8 +25,6 @@ export default class City extends React.Component {
                                     selected={this.state.city.selected}
                         />
                     )
-                }}
-            </calcContext.Consumer>
-        )
+
     }
 }

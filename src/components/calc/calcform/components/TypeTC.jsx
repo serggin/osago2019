@@ -1,6 +1,6 @@
 import React from 'react'
 import FormSelect from "../../../form/FormSelect.jsx";
-import {calcContext} from '../../../App.jsx'
+import {calcView} from '../../../App.jsx'
 import {setTypeTC} from "../../../../actions";
 
 export default class TypeTC extends React.Component {
@@ -12,11 +12,9 @@ export default class TypeTC extends React.Component {
         }
     }
     render() {
-        return (
-            <calcContext.Consumer>
-                {(contextValue) => {
+
 //                    console.log('contextValue=', contextValue)
-                    const options = contextValue.calcView.getOptions("typeTC")
+                    const options = calcView.getOptions("typeTC")
 //                    console.log('options=', options)
                     return (
                         <FormSelect name="typeTC" formlabel="Тип ТС"
@@ -27,8 +25,7 @@ export default class TypeTC extends React.Component {
                                     selected={this.state.typeTC.selected}
                         />
                     )
-                }}
-            </calcContext.Consumer>
-        )
+
+
     }
 }

@@ -18,14 +18,13 @@ const calcView = new CalcView(calcModel)
 const calculator = new Calculator(calcModel)
 
 
-const calcContext = React.createContext();
 
 const App = ({ store }) =>{
     /*calculator.setSubscribe(store)*/
     console.log('APP store=', store)
     calcView.init(store)
     return(
-    <calcContext.Provider value={{calcView}}>
+
         <Provider context={context} store={store}>
             <div>
                 <div id="calc-content" className="col-lg-7"><ConnectedCalcForm context={context}/></div>
@@ -35,12 +34,13 @@ const App = ({ store }) =>{
                 </div>
             </div>
         </Provider>
-    </calcContext.Provider>
+
     )
 }
 
 
 export default App
-export {calcContext, calculator, context, calcView}
-
-
+export { calculator, context, calcView}
+/*
+<calcContext.Provider value={{calcView}}>
+</calcContext.Provider>*/

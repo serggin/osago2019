@@ -8,7 +8,7 @@ import '../public/css/style.css';
 
 import appReducer from "./reducers";
 import App from "./components/App.jsx";
-import {subscribeCalculator} from "./components/App.jsx";
+//import {subscribeCalculator} from "./components/App.jsx";
 
 let store = createStore(appReducer)
 //subscribeCalculator(store)
