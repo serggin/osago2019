@@ -1,6 +1,6 @@
 import React from 'react'
 import FormSelect from "../../../form/FormSelect.jsx";
-import {calcContext} from '../../../App.jsx'
+import {calcView} from '../../../App.jsx'
 import {setRegions} from "../../../../actions";
 
 export default class Regions extends React.Component {
@@ -12,11 +12,8 @@ export default class Regions extends React.Component {
         }
     }
     render() {
-        return (
-            <calcContext.Consumer>
-                {(contextValue) => {
-//                    console.log('contextValue=', contextValue)
-                    const options = contextValue.calcView.getOptions("regions")
+
+                    const options = calcView.getOptions("regions")
 //                    console.log('options=', options)
                     return (
                         <FormSelect name="regions" formlabel="Регион регистрации ТС"
@@ -27,8 +24,5 @@ export default class Regions extends React.Component {
                                     selected={this.state.regions.selected}
                         />
                     )
-                }}
-            </calcContext.Consumer>
-        )
     }
 }
