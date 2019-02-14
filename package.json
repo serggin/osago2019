@@ -2,7 +2,7 @@
   "name": "osago2019",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "src/index.jsx",
   "directories": {
     "doc": "doc"
   },
