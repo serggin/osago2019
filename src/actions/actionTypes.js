@@ -17,6 +17,8 @@ export const SET_REGIONS = 'SET_REGIONS'
 export const SET_CITY = 'SET_CITY'
 export const SET_CRIME = 'SET_CRIME'
 export const SET_LIMIT = 'SET_LIMIT'
+export const SET_AGE = 'SET_AGE'  //минимальный возраст водителя
+export const SET_DRIVINGSTAGE = 'SET_DRIVINGSTAGE'  //СТАЖ водителя
 
 
 

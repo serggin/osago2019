@@ -11,6 +11,8 @@ export default class CalcModel {
         this.period = baseCoeff.period;
         this.regions = baseCoeff.regions;
         this.city = baseCoeff.regions; //???
+        this.age = baseCoeff.age; //???
+        this.drivingstage = baseCoeff.age; //???
 
         /*this.mainBuildingPremium = baseCoeff.mainBuildingPremium;
         this.saunaPremium = baseCoeff.saunaPremium;
@@ -58,42 +60,19 @@ export default class CalcModel {
         return region.city;
     }
 
-  /*  getMainBuildingPremium(key=null){
-        if(key || key==0)
-            return this.mainBuildingPremium.find((item)=>item.ss==key);
-        return this.mainBuildingPremium;
-
+    getAge(key=null){
+        if(key)
+            return this.age[key];
+        return this.age;
     }
-
-    getSaunaPremium(key=null){
-        if(key || key==0)
-            return this.saunaPremium.find((item)=>item.ss==key);
-        return this.saunaPremium;
+    getDrivingstage(ageKey, key=null){
+        console.log('>>>>>>getDrivingstage  ageKey'+ageKey)
+        console.log('>>>>>>getDrivingstage  key'+key)
+        var age = this.getAge(ageKey);
+        if(key)
+            return age.drivingstage[key];
+        return age.drivingstage;
     }
-
-    getDop1Premium(key=null){
-        if(key || key==0)
-            return this.dop1Premium.find((item)=>item.ss==key);
-        return this.dop1Premium;
-    }
-
-    getDop2Premium(key=null){
-        if(key || key==0)
-            return this.dop2Premium.find((item)=>item.ss==key);
-        return this.dop2Premium;
-    }
-
-    getImPremium(key=null){
-        if(key || key==0)
-            return this.imPremium.find((item)=>item.ss==key);
-        return this.imPremium;
-    }
-
-    getGoPremium(key=null){
-        if(key || key==0)
-            return this.goPremium.find((item)=>item.ss==key);
-        return this.goPremium;
-    }*/
 
 }
 

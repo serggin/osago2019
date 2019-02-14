@@ -32,7 +32,8 @@ export default class CalcView{
             region: {region: null},
             crime: {selected: false, enabled:false},
             kbm:{selected: "kbm3"},
-
+            age:{enabled: true},
+            drivingstage:{age:"de0", enabled: false},
         }
     }
 
@@ -190,73 +191,22 @@ export default class CalcView{
                     options.push({value: key, label: key, selected: false});
                 }
                 break;
-
-        }
-        return options;
-    }
-/*    setSaunaVisibility() {
-        const {mainBuilding, showSauna} = this.state
-        if (mainBuilding.buildingType && mainBuilding.mainBuildingSS) {
-            if (!showSauna.sauna) {
-                this.store.dispatch(showSaunaAction())
-            }
-        }
-    }
-
-    setDop1Visibility(){
-        const {mainBuilding, showDop1} = this.state
-        if (mainBuilding.buildingType && mainBuilding.mainBuildingSS) {
-            if (!showDop1.dop1) {
-                this.store.dispatch(showDop1Action())
-            }
-        }
-    }
-
-    getOptions(name, parameter = null) {
-        var options = [];
-        switch (name) {
-            case "mainBuildingPremium":
-                var arr = this.model.getMainBuildingPremium();
-                options = arr.map((item)=>{
-                    return {value:item.ss, label:item.ss, selected: false}
-                })
+            case "age":
+                var obj = this.model.getAge();
+                //  console.log('period obj=', obj);
+                for (var key in obj) {
+                    options.push({value: key, label: obj[key].label, selected: false});
+                }
                 break;
 
-            case "saunaPremium":
-                var arr = this.model.getSaunaPremium();
-                options = arr.map((item)=>{
-                    return {value:item.ss, label:item.ss, selected: false}
-                })
-                break;
-
-            case "dop1Premium":
-                var arr = this.model.getDop1Premium();
-                options = arr.map((item)=>{
-                    return {value:item.ss, label:item.ss, selected: false}
-                })
-                break;
-
-            case "dop2Premium":
-                var arr = this.model.getDop2Premium();
-                options = arr.map((item)=>{
-                    return {value:item.ss, label:item.ss, selected: false}
-                })
-                break;
-
-            case "imPremium":
-                var arr = this.model.getImPremium();
-                options = arr.map((item)=>{
-                    return {value:item.ss, label:item.ss, selected: false}
-                })
-                break;
-
-            case "goPremium":
-                var arr = this.model.getGoPremium();
-                options = arr.map((item)=>{
-                    return {value:item.ss, label:item.ss, selected: false}
-                })
+            case "drivingstage":
+                var obj = this.model.getDrivingstage(parameter);
+                console.log('++++++view getOptions drivingstage parameter='+parameter)
+                for (var key in obj) {
+                    options.push({value: key, label: key, selected: true});
+                }
                 break;
         }
         return options;
-    }*/
+    }
 }

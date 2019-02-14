@@ -1,6 +1,6 @@
 import {SET_OWNER, SET_REGISTRATION, SET_TYPETC, SET_TRAILER,SET_POWERTC,
         SET_TERM,  SET_FIXED_TERM, SET_PERIOD,SET_REGIONS,SET_CITY,
-        SET_CRIME, SET_LIMIT,
+        SET_CRIME, SET_LIMIT, SET_AGE,SET_DRIVINGSTAGE,
 
 } from '../actions/actionTypes'
 
@@ -116,6 +116,26 @@ export function limitReducer (state = null, action) {
     switch (action.type) {
         case SET_LIMIT:
             return action.limit
+
+        default:
+            return state
+    }
+}
+
+export function ageReducer (state = null, action) {
+    switch (action.type) {
+        case SET_AGE:
+            return action.age
+
+        default:
+            return state
+    }
+}
+
+export function drivingstageReducer (state = null, action) {
+    switch (action.type) {
+        case SET_DRIVINGSTAGE:
+            return action.drivingstage
 
         default:
             return state

@@ -11,6 +11,8 @@ import ConnectedRegions from './calcform/containers/ConnectedRegions.jsx'
 import ConnectedCity from './calcform/containers/ConnectedCity.jsx'
 import ConnectedCrime from './calcform/containers/ConnectedCrime.jsx'
 import ConnectedLimit from './calcform/containers/ConnectedLimit.jsx'
+import ConnectedAge from './calcform/containers/ConnectedAge.jsx'
+import ConnectedDrivingstage from './calcform/containers/ConnectedDrivingstage.jsx'
 import {context} from '../App.jsx'
 
 export default class CalcForm extends React.Component {
@@ -33,6 +35,8 @@ export default class CalcForm extends React.Component {
                 <div><ConnectedCity context={context} /></div>
                 <div><ConnectedCrime context={context} /></div>
                 <div><ConnectedLimit context={context} /></div>
+                <div><ConnectedAge context={context} /></div>
+                <div><ConnectedDrivingstage context={context} /></div>
             </div>
          )
     }
