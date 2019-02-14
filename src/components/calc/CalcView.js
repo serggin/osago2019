@@ -3,7 +3,14 @@ import {showDop1 as showDop1Action} from '../../actions'*/
 
 import {
     setFixedTerm as setFixedTermAction,
-    setTerm as setTermAction} from '../../actions'
+    setTerm as setTermAction,
+    setFixedPeriod as setFixedPeriodAction,
+    setPeriod as setPeriodAction,
+
+    setCrime as setCrimeAction,
+    setLimit as setLimitAction,
+
+} from '../../actions'
 
 export default class CalcView{
     constructor(model){
@@ -48,8 +55,26 @@ export default class CalcView{
 
     handleDependences() {
         this.handleRegistrationDependencies();
-        //this.handleOwnerDepencies();
+        this.handleOwnerDepencies();
         //this.handleTypeTCDepencies();
+    }
+    handleOwnerDepencies() {
+        //this.params.yurPeriod = false;
+        switch (this.store.getState().owner) {
+            case "yur":
+                    this.updateStates({
+                    limit: true,
+                 /*   age: null,
+                    drivingstage: null,*/
+
+                })
+
+
+                break;
+
+            case "fiz":
+                break;
+        }
     }
     handleRegistrationDependencies() {
         var fixedTerm;  // = undefined
@@ -88,7 +113,7 @@ export default class CalcView{
     }
 
     updateStates(states) {
-        console.error('updateState() states=', states)
+        console.warn('updateState() states=', states)
         for (let [key, value] of Object.entries(states)) {
             if (value !== undefined) {
                 this.updateState(key, value)
@@ -105,6 +130,18 @@ export default class CalcView{
                     break;
                 case 'term' :
                     this.store.dispatch(setTermAction(value))
+                    break;
+                case 'fixedPeriod' :
+                    this.store.dispatch(setFixedPeriodAction(value))
+                    break;
+                case 'period' :
+                    this.store.dispatch(setPeriodAction(value))
+                    break;
+                case 'crime' :
+                    this.store.dispatch(setCrimeAction(value))
+                    break;
+                case 'limit' :
+                    this.store.dispatch(setLimitAction(value))
                     break;
 
             }

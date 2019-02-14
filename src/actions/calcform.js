@@ -1,6 +1,6 @@
 import {SET_OWNER, SET_REGISTRATION, SET_TYPETC,SET_TRAILER, SET_POWERTC,
         SET_TERM,SET_FIXED_TERM, SET_PERIOD,SET_REGIONS,SET_CITY,
-        SET_CRIME,SET_LIMIT,SET_AGE,SET_DRIVINGSTAGE,
+        SET_CRIME,SET_LIMIT,SET_AGE,SET_DRIVINGSTAGE,SET_FIXED_PERIOD
 
 } from './actionTypes'
 
@@ -60,6 +60,13 @@ export const setPeriod = (period)=>{
     }
 }
 
+export const setFixedPeriod = (period)=>{
+    return {
+        type:SET_FIXED_PERIOD,
+        period,
+    }
+}
+
 export const setRegions = (regions)=>{
     return {
         type:SET_REGIONS,
@@ -97,3 +104,4 @@ export const setDrivingstage = (city)=>{
         city,
     }
 }
+

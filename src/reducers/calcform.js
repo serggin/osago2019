@@ -1,6 +1,6 @@
 import {SET_OWNER, SET_REGISTRATION, SET_TYPETC, SET_TRAILER,SET_POWERTC,
         SET_TERM,  SET_FIXED_TERM, SET_PERIOD,SET_REGIONS,SET_CITY,
-        SET_CRIME, SET_LIMIT, SET_AGE,SET_DRIVINGSTAGE,
+        SET_CRIME, SET_LIMIT, SET_AGE,SET_DRIVINGSTAGE,SET_FIXED_PERIOD,
 
 } from '../actions/actionTypes'
 
@@ -84,6 +84,16 @@ export function periodReducer (state = 't0', action) {
     }
 }
 
+export function fixedPeriodReducer (state = null, action) {
+    switch (action.type) {
+        case SET_FIXED_PERIOD:
+            return action.period
+
+        default:
+            return state
+    }
+}
+
 export function regionsReducer (state = 'r90', action) {
     switch (action.type) {
         case SET_REGIONS:
@@ -112,7 +122,7 @@ export function crimeReducer (state = null, action) {
             return state
     }
 }
-export function limitReducer (state = null, action) {
+export function limitReducer (state = false, action) {
     switch (action.type) {
         case SET_LIMIT:
             return action.limit
@@ -122,7 +132,7 @@ export function limitReducer (state = null, action) {
     }
 }
 
-export function ageReducer (state = null, action) {
+export function ageReducer (state = 'de0', action) {
     switch (action.type) {
         case SET_AGE:
             return action.age

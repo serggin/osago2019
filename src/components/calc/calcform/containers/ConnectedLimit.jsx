@@ -6,6 +6,8 @@ import { setLimit} from '../../../../actions'
 
 const mapStateToProps = (state, props) => {
     return {
+        limit:state.limit,
+        owner: state.owner,
     }
 }
 const mapDispatchToProps = (dispatch, props) =>
