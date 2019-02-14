@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux'
 import {premiumReducer, errorMessageReducer} from './premium'
-import {ownerReducer, registrationReducer, typeTCReducer, powerTCReducer,termReducer,fixedTermReducer,periodReducer,
-    regionsReducer, cityReducer} from './calcform'
+import {ownerReducer, registrationReducer, typeTCReducer,trailerReducer, powerTCReducer,
+        termReducer,fixedTermReducer,periodReducer, regionsReducer, cityReducer,
+
+} from './calcform'
 
 const appReducer = combineReducers({
     premium: premiumReducer,
@@ -9,6 +11,7 @@ const appReducer = combineReducers({
     owner: ownerReducer,
     registration: registrationReducer,
     typeTC: typeTCReducer,
+    trailer: trailerReducer,
     powerTC: powerTCReducer,
     term: termReducer,
     fixedTerm: fixedTermReducer,

@@ -1,4 +1,8 @@
-import {SET_OWNER, SET_REGISTRATION, SET_TYPETC, SET_POWERTC,SET_TERM, SET_FIXED_TERM, SET_PERIOD,SET_REGIONS,SET_CITY} from '../actions/actionTypes'
+import {SET_OWNER, SET_REGISTRATION, SET_TYPETC, SET_TRAILER,SET_POWERTC,
+        SET_TERM,  SET_FIXED_TERM, SET_PERIOD,SET_REGIONS,SET_CITY,
+        SET_CRIME, SET_LIMIT,
+
+} from '../actions/actionTypes'
 
 export function ownerReducer (state = 'fiz', action) {
     switch (action.type) {
@@ -31,6 +35,15 @@ export function typeTCReducer (state = 'tc22', action) {
     }
 }
 
+export function trailerReducer (state=null, action) {
+    switch (action.type) {
+        case SET_TRAILER:
+            return action.trailer
+
+        default:
+            return state
+    }
+}
 
 export function powerTCReducer (state = 'p0', action) {
     switch (action.type) {
@@ -85,6 +98,24 @@ export function cityReducer (state = null, action) {
     switch (action.type) {
         case SET_CITY:
             return action.city
+
+        default:
+            return state
+    }
+}
+export function crimeReducer (state = null, action) {
+    switch (action.type) {
+        case SET_CRIME:
+            return action.crime
+
+        default:
+            return state
+    }
+}
+export function limitReducer (state = null, action) {
+    switch (action.type) {
+        case SET_LIMIT:
+            return action.limit
 
         default:
             return state

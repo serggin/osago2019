@@ -1,4 +1,8 @@
-import {SET_OWNER, SET_REGISTRATION, SET_TYPETC, SET_POWERTC, SET_TERM,SET_FIXED_TERM, SET_PERIOD,SET_REGIONS,SET_CITY} from './actionTypes'
+import {SET_OWNER, SET_REGISTRATION, SET_TYPETC,SET_TRAILER, SET_POWERTC,
+        SET_TERM,SET_FIXED_TERM, SET_PERIOD,SET_REGIONS,SET_CITY,
+        SET_CRIME,SET_LIMIT,
+
+} from './actionTypes'
 
 export const setOwner = (owner)=>{
     return {
@@ -15,13 +19,18 @@ export const setRegistration = (registration)=>{
 }
 
 export const setTypeTC = (typeTC)=>{
-//    console.warn('setTypeTC', typeTC)
     return {
         type:SET_TYPETC,
         typeTC,
     }
 }
 
+export const setTrailer = (trailer)=>{
+    return {
+        type: SET_TRAILER,
+        trailer,
+    }
+}
 
 export const setPowerTC = (powerTC)=>{
     return {
@@ -61,5 +70,17 @@ export const setCity = (city)=>{
     return {
         type:SET_CITY,
         city,
+    }
+}
+export const setCrime = (crime)=>{
+    return {
+        type:SET_CRIME,
+        crime,
+    }
+}
+export const setLimit = (limit)=>{
+    return {
+        type:SET_LIMIT,
+        limit,
     }
 }

@@ -15,6 +15,10 @@ export const SET_FIXED_TERM = 'SET_FIXED_TERM'
 export const SET_PERIOD = 'SET_PERIOD'
 export const SET_REGIONS = 'SET_REGIONS'
 export const SET_CITY = 'SET_CITY'
+export const SET_CRIME = 'SET_CRIME'
+export const SET_LIMIT = 'SET_LIMIT'
+
+
 
 
 

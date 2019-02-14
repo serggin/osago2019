@@ -30,7 +30,7 @@ export default class CalcView{
             limit: {selected: false},
             driving_experience:{enabled:true},
             region: {region: null},
-            crime: {selected: false, },
+            crime: {selected: false, enabled:false},
             kbm:{selected: "kbm3"},
 
         }
@@ -61,13 +61,14 @@ export default class CalcView{
             case "regRu":
                 fixedTerm = 't12';  // 1 год
                 term = 't12';
+                crime: true;
                 break;
             case "regNo":
                 fixedTerm = 't20';  // до 20 дней
                 term = 't20';
                 fixedPeriod = 't8';
                 period = 't8';
-                crime = false;
+                crime=true;
                 break;
             case "regFo":
                 break;
@@ -81,7 +82,7 @@ export default class CalcView{
             term: term,
             fixedPeriod: fixedPeriod,
             period: period,
-//            crime: crime
+            crime: crime,
         })
     }
 
@@ -104,6 +105,7 @@ export default class CalcView{
                 case 'term' :
                     this.store.dispatch(setTermAction(value))
                     break;
+
             }
         }
     }
