@@ -1,6 +1,7 @@
 import {SET_OWNER, SET_REGISTRATION, SET_TYPETC, SET_TRAILER,SET_POWERTC,
         SET_TERM,  SET_FIXED_TERM, SET_PERIOD,SET_REGIONS,SET_CITY,
         SET_CRIME, SET_LIMIT, SET_AGE,SET_DRIVINGSTAGE,SET_FIXED_PERIOD,
+        SET_KBM, SET_PERIOD_KBM,
 
 } from '../actions/actionTypes'
 
@@ -146,6 +147,26 @@ export function drivingstageReducer (state = null, action) {
     switch (action.type) {
         case SET_DRIVINGSTAGE:
             return action.drivingstage
+
+        default:
+            return state
+    }
+}
+
+export function kbmReducer (state = 'kbm1', action) {
+    switch (action.type) {
+        case SET_KBM:
+            return action.kbm
+
+        default:
+            return state
+    }
+}
+
+export function periodKbmReducer (state = null, action) {
+    switch (action.type) {
+        case SET_PERIOD_KBM:
+            return action.periodKbm
 
         default:
             return state

@@ -6,9 +6,10 @@ import {
     setTerm as setTermAction,
     setFixedPeriod as setFixedPeriodAction,
     setPeriod as setPeriodAction,
-
+    setDrivingstage as setDrivingstageAction,
     setCrime as setCrimeAction,
     setLimit as setLimitAction,
+setPeriodKbm as setPeriodKbmAction
 
 } from '../../actions'
 
@@ -38,9 +39,12 @@ export default class CalcView{
             driving_experience:{enabled:true},
             region: {region: null},
             crime: {selected: false, enabled:false},
-            kbm:{selected: "kbm3"},
+
             age:{enabled: true},
             drivingstage:{age:"de0", enabled: false},
+            
+            kbm:{enabled: true},
+            periodKbm:{kbm:"kbm1", enabled: false},
         }
     }
 
@@ -143,7 +147,12 @@ export default class CalcView{
                 case 'limit' :
                     this.store.dispatch(setLimitAction(value))
                     break;
-
+                case 'drivingstage':
+                    this.store.dispatch(setDrivingstageAction(value))
+                    break;
+                case 'periodKbm':
+                    this.store.dispatch(setPeriodKbmAction(value))
+                    break;
             }
         }
     }
@@ -239,6 +248,21 @@ export default class CalcView{
             case "drivingstage":
                 var obj = this.model.getDrivingstage(parameter);
                 console.log('++++++view getOptions drivingstage parameter='+parameter)
+                for (var key in obj) {
+                    options.push({value: key, label: key, selected: true});
+                }
+                break;
+            case "kbm":
+                var obj = this.model.getKbm();
+                //  console.log('period obj=', obj);
+                for (var key in obj) {
+                    options.push({value: key, label: obj[key].label, selected: false});
+                }
+                break;
+
+            case "periodKbm":
+                var obj = this.model.getPeriodKbm(parameter);
+
                 for (var key in obj) {
                     options.push({value: key, label: key, selected: true});
                 }

@@ -10,10 +10,11 @@ export default class CalcModel {
         this.term = baseCoeff.term;
         this.period = baseCoeff.period;
         this.regions = baseCoeff.regions;
-        this.city = baseCoeff.regions; //???
-        this.age = baseCoeff.age; //???
-        this.drivingstage = baseCoeff.age; //???
-
+        this.city = baseCoeff.regions;
+        this.age = baseCoeff.age;
+        this.drivingstage = baseCoeff.age;
+        this.kbm = baseCoeff.kbm;
+        this.periodKbm = baseCoeff.kbm;
         /*this.mainBuildingPremium = baseCoeff.mainBuildingPremium;
         this.saunaPremium = baseCoeff.saunaPremium;
         this.dop1Premium = baseCoeff.dop1Premium;
@@ -74,6 +75,19 @@ export default class CalcModel {
         return age.drivingstage;
     }
 
+    getKbm(key=null){
+        if(key)
+            return this.kbm[key];
+        return this.kbm;
+    }
+    getPeriodKbm(kbmKey, key=null){
+        console.log('>>>>>>getDrivingstage  kbmKey'+kbmKey)
+        console.log('>>>>>>getDrivingstage  key'+key)
+        var kbm = this.getKbm(kbmKey);
+        if(key)
+            return kbm.periodKbm[key];
+        return kbm.periodKbm;
+    }
 }
 
 
