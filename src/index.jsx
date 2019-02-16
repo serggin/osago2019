@@ -1,6 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk';
+import invariant from 'redux-immutable-state-invariant';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import * as actionCreators from './actions/';
 import '../public/css/style.css';
 
 
@@ -10,7 +14,9 @@ import appReducer from "./reducers";
 import App from "./components/App.jsx";
 //import {subscribeCalculator} from "./components/App.jsx";
 
-let store = createStore(appReducer)
+const composeEnhancers = composeWithDevTools({ actionCreators, trace: true, traceLimit: 25 });
+
+let store = createStore(appReducer, composeEnhancers(applyMiddleware(invariant(), thunk)))
 //subscribeCalculator(store)
 
 store.subscribe(()=>{
