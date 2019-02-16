@@ -7,8 +7,8 @@ export default class City extends React.Component {
     constructor(props) {
         super(props)
         console.warn('city constructor props=', props)
-        const {city} = calcView.getInitialStates();
-        this.state = { city: city }
+        //const {city} = calcView.getInitialStates();
+       // this.state = { city: city }
     }
 
     render() {
@@ -22,7 +22,7 @@ export default class City extends React.Component {
                                     options={options}
                                     placeholder="Выберите место регистрации ТС"
                                     assigned={(v) => this.props.setCity(v)}
-                                    selected={this.state.city.selected}
+                                    selected={options[0]}
                         />
                     )
 

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import {premiumReducer, errorMessageReducer} from './premium'
 import {ownerReducer, registrationReducer, typeTCReducer,trailerReducer, powerTCReducer,
-        termReducer,fixedTermReducer,periodReducer, fixedPeriodReducer, regionsReducer, cityReducer,
+        termReducer,periodReducer, fixedPeriodReducer, regionsReducer, cityReducer,
         ageReducer,drivingstageReducer,limitReducer,crimeReducer,kbmReducer,periodKbmReducer
 
 
@@ -16,7 +16,6 @@ const appReducer = combineReducers({
     trailer: trailerReducer,
     powerTC: powerTCReducer,
     term: termReducer,
-    fixedTerm: fixedTermReducer,
     period: periodReducer,
     fixedPeriod: fixedPeriodReducer,
     regions: regionsReducer,

@@ -7,8 +7,8 @@ export default class Drivingstage extends React.Component {
     constructor(props) {
         super(props)
         console.warn('drivingstage constructor props=', props)
-        const {drivingstage} = calcView.getInitialStates();
-        this.state = { drivingstage: drivingstage }
+        //const {drivingstage} = calcView.getInitialStates();
+        //this.state = { drivingstage: drivingstage }
     }
 
     render() {
@@ -22,7 +22,7 @@ export default class Drivingstage extends React.Component {
                                     options={options}
                                     placeholder="Выберите место регистрации ТС"
                                     assigned={(v) => this.props.setDrivingstage(v)}
-                                    selected={this.state.drivingstage.selected}
+                                    selected={options[0]}
                         />
                     )
 

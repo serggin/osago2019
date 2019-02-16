@@ -15,7 +15,7 @@ export default class Trailer extends React.Component {
     }
 
     render() {
-        const options = calcView.getInitialStates.trailer;
+
         return (
 
             <FormCheckbox1 name="trailer" formlabel="ТС с прицепом"

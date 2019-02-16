@@ -9,7 +9,7 @@ import {
     setDrivingstage as setDrivingstageAction,
     setCrime as setCrimeAction,
     setLimit as setLimitAction,
-setPeriodKbm as setPeriodKbmAction
+    setPeriodKbm as setPeriodKbmAction
 
 } from '../../actions'
 
@@ -17,6 +17,10 @@ export default class CalcView{
     constructor(model){
         this.model = model;
         this.stateChanged = this.stateChanged.bind(this)
+        this.cnt = 0;
+        this.isBusy = false;
+        this.hasMoreChanges = false;
+        this.statesToUpdate = {};
     }
 
     init(store) {
@@ -24,7 +28,7 @@ export default class CalcView{
         store.subscribe(this.stateChanged)
     }
 
-    getInitialStates() {
+  /*  getInitialStates() {
         return {
             owner: {buttonChecked: "fiz"},
             typeTC:{selected: "tc22", enabled:true },
@@ -39,34 +43,53 @@ export default class CalcView{
             driving_experience:{enabled:true},
             region: {region: null},
             crime: {selected: false, enabled:false},
-
             age:{enabled: true},
             drivingstage:{age:"de0", enabled: false},
             
             kbm:{enabled: true},
             periodKbm:{kbm:"kbm1", enabled: false},
         }
-    }
+    }*/
 
 
     stateChanged() {
-        console.warn('stateChanged()')
+        if (++this.cnt > 100) {
+            alert("зациклилось!")
+            return
+        }
+        if (!this.isBusy) {
+            this.isBusy = true;
+//            console.warn('stateChanged()')
+            this.cycle = 0;
+            this.handleCycle()
+        }
+    }
+
+    handleCycle() {
+        if (++this.cycle > 5) {
+            alert("Циклы зациклились!")
+            return
+        }
         this.state = this.store.getState()
         this.handleDependences()
-       // this.setSaunaVisibility()
-       // this.setDop1Visibility()
+        this.updateStates()
+        if (this.hasMoreChanges) {
+            this.handleCycle()
+        }
     }
 
     handleDependences() {
+        this.hasMoreChanges = false;
+        this.statesToUpdate = {};
+        this.handleOwnerDepencies();//owner
         this.handleRegistrationDependencies();
-        this.handleOwnerDepencies();
-        //this.handleTypeTCDepencies();
+        //this.handleTypeTCDepencies(); стр 7
     }
     handleOwnerDepencies() {
         //this.params.yurPeriod = false;
         switch (this.store.getState().owner) {
             case "yur":
-                    this.updateStates({
+                    this.addUpdateStates({
                     limit: true,
                  /*   age: null,
                     drivingstage: null,*/
@@ -81,34 +104,34 @@ export default class CalcView{
         }
     }
     handleRegistrationDependencies() {
-        var fixedTerm;  // = undefined
-        var term;
+        var term;  // = undefined
+//        var fixedTerm;
         var fixedPeriod;
         var period;
         var crime;
 
         switch (this.store.getState().registration) {
             case "regRu":
-                fixedTerm = 't12';  // 1 год
-                term = 't12';
+//                fixedTerm = 't12';  // 1 год
+                term = {fixed: false};
+//                term = 't12';
                 crime: true;
                 break;
             case "regNo":
-                fixedTerm = 't20';  // до 20 дней
-                term = 't20';
+                term = {term: 't20', fixed: 't20'};  // до 20 дней
                 fixedPeriod = 't8';
                 period = 't8';
                 crime=true;
                 break;
             case "regFo":
+                term = {fixed: false};
                 break;
             default:
                 //Только при переходе на "regFo" с "regRu" или с "regRu" нужно сбросить:
                 if (['t12', 't20'].indexOf(this.store.getState().term) >= 0)
-                    term = null;
+                    term = {value:null};
         }
-        this.updateStates({
-            fixedTerm: fixedTerm,
+        this.addUpdateStates({
             term: term,
             fixedPeriod: fixedPeriod,
             period: period,
@@ -116,9 +139,13 @@ export default class CalcView{
         })
     }
 
-    updateStates(states) {
-        console.warn('updateState() states=', states)
-        for (let [key, value] of Object.entries(states)) {
+    addUpdateStates (states) {
+        this.statesToUpdate = {...this.statesToUpdate, ...states};
+    }
+
+    updateStates() {
+        console.warn('updateStates(): ', this.statesToUpdate)
+        for (let [key, value] of Object.entries(this.statesToUpdate)) {
             if (value !== undefined) {
                 this.updateState(key, value)
             }
@@ -127,7 +154,9 @@ export default class CalcView{
 
     updateState(key, value) {
         const oldValue = this.store.getState()[key]
-        if (oldValue !== value) {
+        var moreChanges = false;
+        if (this.hasStateChanged(oldValue, value)) {
+            moreChanges = true
             switch (key) {
                 case 'fixedTerm' :
                     this.store.dispatch(setFixedTermAction(value))
@@ -153,7 +182,23 @@ export default class CalcView{
                 case 'periodKbm':
                     this.store.dispatch(setPeriodKbmAction(value))
                     break;
+                default:
+                    moreChanges = false;
             }
+        }
+        this.hasMoreChanges = this.hasMoreChanges || moreChanges
+    }
+
+    hasStateChanged(oldState, newState) {
+        if (typeof newState === 'object') {
+            for (let [key, value] of Object.entries(newState)) {
+                if (newState[key] !== oldState[key]) {
+                    return true
+                }
+            }
+            return false
+        } else {
+            return oldState !== newState
         }
     }
 

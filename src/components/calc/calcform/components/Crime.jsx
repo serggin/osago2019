@@ -14,7 +14,7 @@ export default class Crime extends React.Component {
         this.props.view.assign(key, value);
     }
     render() {
-        const options = calcView.getInitialStates.crime;
+
         return (
 
             <FormCheckbox1 name="crime" formlabel="Имеются грубые нарушения условий страхования"

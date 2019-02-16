@@ -9,8 +9,10 @@ export const SET_TYPETC = 'SET_TYPETC'
 export const SET_TRAILER = 'SET_TRAILER'
 
 export const SET_POWERTC = 'SET_POWERTC'
+
 export const SET_TERM = 'SET_TERM'
 export const SET_FIXED_TERM = 'SET_FIXED_TERM'
+export const DISABLE_TERM = 'DISABLE_TERM'
 
 export const SET_PERIOD = 'SET_PERIOD'
 export const SET_FIXED_PERIOD = 'SET_FIXED_PERIOD'

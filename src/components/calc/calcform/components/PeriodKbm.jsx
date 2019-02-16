@@ -7,8 +7,8 @@ export default class PeriodKbm extends React.Component {
     constructor(props) {
         super(props)
         console.warn('PeriodKbm constructor props=', props)
-        const {periodKbm} = calcView.getInitialStates();
-        this.state = { periodKbm: periodKbm }
+        //const {periodKbm} = calcView.getInitialStates();
+        //this.state = { periodKbm: periodKbm }
     }
 
     render() {
@@ -22,7 +22,7 @@ export default class PeriodKbm extends React.Component {
                                     options={options}
                                     placeholder="Выберите количество страховых возмещений за период КБМ"
                                     assigned={(v) => this.props.setPeriodKbm(v)}
-                                    selected={this.state.periodKbm.selected}
+                                    selected={options[0]}
                         />
                     )
 
