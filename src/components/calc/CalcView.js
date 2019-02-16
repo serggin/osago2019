@@ -1,6 +1,3 @@
-/*import {showSauna as showSaunaAction} from '../../actions'
-import {showDop1 as showDop1Action} from '../../actions'*/
-
 import {
     setFixedTerm as setFixedTermAction,
     setTerm as setTermAction,
@@ -51,52 +48,58 @@ export default class CalcView{
         }
     }*/
 
-
+    /*
+     * Обработчик изменения состояния в Redux store
+     */
     stateChanged() {
         if (++this.cnt > 100) {
             alert("зациклилось!")
             return
         }
-        if (!this.isBusy) {
-            this.isBusy = true;
+        if (!this.isBusy) { //обработчик еще не запущен
+            this.isBusy = true; // теперь запущен
 //            console.warn('stateChanged()')
             this.cycle = 0;
-            this.handleCycle()
+            this.handleCycle()  // выполняем цикл обработки
         }
     }
 
+    /*
+     * Выполнение цикла обработки - обработка всех зависимостей
+     */
     handleCycle() {
         if (++this.cycle > 5) {
             alert("Циклы зациклились!")
             return
         }
         this.state = this.store.getState()
-        this.handleDependences()
-        this.updateStates()
-        if (this.hasMoreChanges) {
-            this.handleCycle()
+        this.handleDependences()    // Обработка зависимостей
+        this.updateStates()     // Оновление состояний в Redux store
+        if (this.hasMoreChanges) { // было изменение хотя одного состояния
+            this.handleCycle()      // нужно выполнить очередной цикл обработки зависимостей
         }
     }
 
+    /*
+     * Обработка зависимостей состояний Redux store
+     */
     handleDependences() {
-        this.hasMoreChanges = false;
-        this.statesToUpdate = {};
-        this.handleOwnerDepencies();//owner
+        this.hasMoreChanges = false;    // изменений пока нет
+        this.statesToUpdate = {};   //и объект с новыми состояниями пока пуст
+        this.handleOwnerDepencies();    //owner
         this.handleRegistrationDependencies();
         //this.handleTypeTCDepencies(); стр 7
     }
+
     handleOwnerDepencies() {
         //this.params.yurPeriod = false;
         switch (this.store.getState().owner) {
             case "yur":
                     this.addUpdateStates({
-                    limit: true,
-                 /*   age: null,
-                    drivingstage: null,*/
-
-                })
-
-
+                            limit: true,
+                         /*   age: null,
+                            drivingstage: null,*/
+                        })
                 break;
 
             case "fiz":
@@ -105,7 +108,6 @@ export default class CalcView{
     }
     handleRegistrationDependencies() {
         var term;  // = undefined
-//        var fixedTerm;
         var fixedPeriod;
         var period;
         var crime;
@@ -113,8 +115,8 @@ export default class CalcView{
         switch (this.store.getState().registration) {
             case "regRu":
 //                fixedTerm = 't12';  // 1 год
-                term = {fixed: false};
 //                term = 't12';
+                term = {fixed: false};
                 crime: true;
                 break;
             case "regNo":
@@ -139,24 +141,36 @@ export default class CalcView{
         })
     }
 
+    /*
+     * Запомнить состояния, которые предстоит обновить
+     * (дописать/заменить в объект this.statesToUpdate)
+     */
     addUpdateStates (states) {
         this.statesToUpdate = {...this.statesToUpdate, ...states};
     }
 
+    /*
+     * Обновить состояния из this.statesToUpdate в Redux store
+     */
     updateStates() {
         console.warn('updateStates(): ', this.statesToUpdate)
         for (let [key, value] of Object.entries(this.statesToUpdate)) {
-            if (value !== undefined) {
+            if (value !== undefined) {  //Если value === undefined, то обновлять не чего
                 this.updateState(key, value)
             }
         }
     }
 
+    /*
+     * Обновить состояния в Redux store
+     * key - имя параметра состояния (см. reducers/index.js)
+     * value - новое значение состояния
+     */
     updateState(key, value) {
-        const oldValue = this.store.getState()[key]
-        var moreChanges = false;
-        if (this.hasStateChanged(oldValue, value)) {
-            moreChanges = true
+        const oldValue = this.store.getState()[key] // старое значение
+        var moreChanges = false;    // пока ничего не изменили
+        if (this.hasStateChanged(oldValue, value)) {    // проверка, отличается ли новое состояние от старого
+            moreChanges = true // будем изменять
             switch (key) {
                 case 'fixedTerm' :
                     this.store.dispatch(setFixedTermAction(value))
@@ -183,16 +197,23 @@ export default class CalcView{
                     this.store.dispatch(setPeriodKbmAction(value))
                     break;
                 default:
-                    moreChanges = false;
+                    moreChanges = false;    // так ничего и не изменили
             }
         }
-        this.hasMoreChanges = this.hasMoreChanges || moreChanges
+        this.hasMoreChanges = this.hasMoreChanges || moreChanges    // если изменили, то this.hasMoreChanges = true
+        // иначе оставим прежнее значение this.hasMoreChanges
     }
 
+    /*
+     * Проверка, отличается ли новое состояние от старого
+     * oldState - старое состояния, берется из Redux store
+     * newState - новое состояние, если объект, то м.б. часть параметров объекта состояния
+     */
     hasStateChanged(oldState, newState) {
-        if (typeof newState === 'object') {
-            for (let [key, value] of Object.entries(newState)) {
-                if (newState[key] !== oldState[key]) {
+        if (typeof newState === 'object') { // тип состояния - объект?
+            for (let [key, value] of Object.entries(newState)) { //цикл по параметрам объекта нового состояния
+                // (новое состояние может иметь меньше параметров, чем старое полное из Redux store)
+                if (newState[key] !== oldState[key]) {  
                     return true
                 }
             }
