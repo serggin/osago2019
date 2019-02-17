@@ -6,6 +6,7 @@ import { setTypeTC } from '../../../../actions'
 const mapStateToProps = (state, props) => {
     return {
         owner: state.owner,
+        typeTC: state.typeTC,
     }
 }
 const mapDispatchToProps = (dispatch, props) =>

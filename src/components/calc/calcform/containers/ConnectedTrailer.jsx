@@ -6,6 +6,7 @@ import { setTrailer } from '../../../../actions'
 
 const mapStateToProps = (state, props) => {
     return {
+        trailer:state.trailer,
     }
 }
 const mapDispatchToProps = (dispatch, props) =>

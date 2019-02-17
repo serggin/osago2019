@@ -6,7 +6,7 @@ import {setAge} from "../../../../actions";
 export default class Age extends React.Component {
     constructor(props) {
         super(props)
-        console.warn('constructor props=', props)
+//        console.warn('constructor props=', props)
         this.state = {
             age: {selected: "de0"}
         }
@@ -14,7 +14,7 @@ export default class Age extends React.Component {
     render() {
 
                     const options = calcView.getOptions("age")
-                   console.log('options=', options)
+                    console.log('options=', options)
                     return (
                         <FormSelect name="age" formlabel="Возраст водителя (если водителей несколько, выбирать следует минимальный)"
                                     labelProps={{className: "col-lg-12 label label-info mandatory-parameter"}}

@@ -8,6 +8,7 @@ export const SET_TYPETC = 'SET_TYPETC'
 
 export const SET_TRAILER = 'SET_TRAILER'
 
+
 export const SET_POWERTC = 'SET_POWERTC'
 
 export const SET_TERM = 'SET_TERM'
@@ -21,7 +22,7 @@ export const SET_REGIONS = 'SET_REGIONS'
 export const SET_CITY = 'SET_CITY'
 
 export const SET_CRIME = 'SET_CRIME'
-export const DISABLE_CRIME = 'DISABLE_CRIME'
+
 
 export const SET_LIMIT = 'SET_LIMIT'
 export const SET_AGE = 'SET_AGE'  //минимальный возраст водителя

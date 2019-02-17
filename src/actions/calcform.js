@@ -1,8 +1,8 @@
 import {
-    SET_OWNER, SET_REGISTRATION, SET_TYPETC, SET_TRAILER, SET_POWERTC,
+    SET_OWNER, SET_REGISTRATION, SET_TYPETC, SET_TRAILER,  SET_POWERTC,
     SET_TERM, SET_FIXED_TERM, DISABLE_TERM, SET_PERIOD, SET_REGIONS, SET_CITY,
     SET_CRIME, SET_LIMIT, SET_AGE, SET_DRIVINGSTAGE, SET_FIXED_PERIOD,
-    SET_KBM, SET_PERIOD_KBM, DISABLE_CRIME,
+    SET_KBM, SET_PERIOD_KBM,
 
 } from './actionTypes'
 
@@ -27,12 +27,7 @@ export const setTypeTC = (typeTC)=>{
     }
 }
 
-export const setTrailer = (trailer)=>{
-    return {
-        type: SET_TRAILER,
-        trailer,
-    }
-}
+
 
 export const setPowerTC = (powerTC)=>{
     return {
@@ -95,12 +90,16 @@ export const setCrime = (crime)=>{
     }
 }
 
-export const disableCrime = (disabled)=>{
+
+
+export const setTrailer = (trailer)=>{
     return {
-        type:DISABLE_CRIME,
-        disabled,
+        type: SET_TRAILER,
+        trailer,
     }
 }
+
+
 
 export const setLimit = (limit)=>{
     return {

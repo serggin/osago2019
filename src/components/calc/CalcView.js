@@ -7,18 +7,19 @@ import {
     setDrivingstage as setDrivingstageAction,
     setCrime as setCrimeAction,
     setLimit as setLimitAction,
-    setPeriodKbm as setPeriodKbmAction
+    setPeriodKbm as setPeriodKbmAction,
+    setTrailer as setTrailerAction
 
 } from '../../actions'
 
 export default class CalcView{
     constructor(model){
         this.model = model;
-        this.stateChanged = this.stateChanged.bind(this)
-        this.cnt = 0;
+//        this.stateChanged = this.stateChanged.bind(this)
+/*        this.cnt = 0;
         this.isBusy = false;
         this.hasMoreChanges = false;
-        this.statesToUpdate = {};
+        this.statesToUpdate = {}; */
     }
 
     init(store) {
@@ -37,13 +38,23 @@ export default class CalcView{
         this.store.subscribe(ownerWatch((newVal, oldVal, objectPath) => {
             this.handleOwnerDependencies(newVal, oldVal)
         }))
+
+        let typeTCWatch = watch(this.store.getState, 'typeTC')
+        this.store.subscribe(typeTCWatch((newVal, oldVal, objectPath) => {
+            this.handleTypeTCDependencies(newVal, oldVal)
+        }))
     }
+    handleTypeTCDependencies(newVal, oldVal) {
+        this.setTrailerDependency()
+    }
+
     handleOwnerDependencies(newVal, oldVal) {
         //this.params.yurPeriod = false;
         switch (newVal) {
             case "yur":
                 this.updateStates({
                     limit: true,
+//                    trailer: {value: false, disabled:false}
                     /*   age: null,
                        drivingstage: null,*/
                 })
@@ -52,11 +63,14 @@ export default class CalcView{
             case "fiz":
                 this.updateStates({
                     limit: false,
+//                    trailer: {value: false, disabled:false}
+
                 /*   age: null,
                    drivingstage: null,*/
                 })
                 break;
         }
+        this.setTrailerDependency()
     }
 
     handleRegistrationDependencies(newVal, oldVal) {
@@ -93,6 +107,15 @@ export default class CalcView{
             period: period,
             crime: crime,
         })
+    }
+
+    setTrailerDependency() {
+        const {owner, typeTC} = this.store.getState()
+        let disabled = false
+        if (owner == "fiz" && ['tc22', 'tc23'].indexOf(typeTC) >= 0) {
+            disabled = true
+        }
+        this.updateStates({trailer: {value:false, disabled:disabled}})
     }
 
     /*
@@ -133,6 +156,7 @@ export default class CalcView{
     /*
      * Обработчик изменения состояния в Redux store
      */
+/*
     stateChanged() {
         if (++this.cnt > 100) {
             alert("зациклилось!")
@@ -145,10 +169,12 @@ export default class CalcView{
             this.handleCycle()  // выполняем цикл обработки
         }
     }
+*/
 
     /*
      * Выполнение цикла обработки - обработка всех зависимостей
      */
+/*
     handleCycle() {
         if (++this.cycle > 5) {
             alert("Циклы зациклились!")
@@ -161,10 +187,12 @@ export default class CalcView{
             this.handleCycle()      // нужно выполнить очередной цикл обработки зависимостей
         }
     }
+*/
 
     /*
      * Обработка зависимостей состояний Redux store
      */
+/*
     handleDependences() {
         this.hasMoreChanges = false;    // изменений пока нет
         this.statesToUpdate = {};   //и объект с новыми состояниями пока пуст
@@ -172,17 +200,19 @@ export default class CalcView{
         this.handleRegistrationDependencies0();
         //this.handleTypeTCDepencies(); стр 7
     }
+*/
 
 
 
+/*
     handleOwnerDepencies0() {
         //this.params.yurPeriod = false;
         switch (this.store.getState().owner) {
             case "yur":
                     this.addUpdateStates({
                             limit: true,
-                         /*   age: null,
-                            drivingstage: null,*/
+                         /!*   age: null,
+                            drivingstage: null,*!/
                         })
                 break;
 
@@ -190,7 +220,9 @@ export default class CalcView{
                 break;
         }
     }
+*/
 
+/*
     handleRegistrationDependencies0() {
         var term;  // = undefined
         var fixedPeriod;
@@ -226,20 +258,24 @@ export default class CalcView{
             crime: crime,
         })
     }
+*/
 
     /*
      * Запомнить состояния, которые предстоит обновить
      * (дописать/заменить в объект this.statesToUpdate)
      */
+/*
     addUpdateStates (states) {
         console.log("addUpdateStates() states=", states);
         this.statesToUpdate = {...this.statesToUpdate, ...states};
         console.log("statesToUpdate=", this.statesToUpdate);
     }
+*/
 
     /*
      * Обновить состояния из this.statesToUpdate в Redux store
      */
+/*
     updateStates0() {
         console.warn('updateStates(): ', this.statesToUpdate)
         for (let [key, value] of Object.entries(this.statesToUpdate)) {
@@ -248,6 +284,7 @@ export default class CalcView{
             }
         }
     }
+*/
 
     /*
      * Обновить состояния в Redux store
@@ -256,9 +293,9 @@ export default class CalcView{
      */
     updateState(key, value) {
         const oldValue = this.store.getState()[key] // старое значение
-        var moreChanges = false;    // пока ничего не изменили
+//        var moreChanges = false;    // пока ничего не изменили
         if (this.hasStateChanged(oldValue, value)) {    // проверка, отличается ли новое состояние от старого
-            moreChanges = true // будем изменять
+//            moreChanges = true // будем изменять
             switch (key) {
                 case 'fixedTerm' :
                     this.store.dispatch(setFixedTermAction(value))
@@ -275,6 +312,9 @@ export default class CalcView{
                 case 'crime' :
                     this.store.dispatch(setCrimeAction(value))
                     break;
+                case 'trailer' :
+                    this.store.dispatch(setTrailerAction(value))
+                    break;
                 case 'limit' :
                     this.store.dispatch(setLimitAction(value))
                     break;
@@ -285,10 +325,10 @@ export default class CalcView{
                     this.store.dispatch(setPeriodKbmAction(value))
                     break;
                 default:
-                    moreChanges = false;    // так ничего и не изменили
+//                    moreChanges = false;    // так ничего и не изменили
             }
         }
-        this.hasMoreChanges = this.hasMoreChanges || moreChanges    // если изменили, то this.hasMoreChanges = true
+//        this.hasMoreChanges = this.hasMoreChanges || moreChanges    // если изменили, то this.hasMoreChanges = true
         // иначе оставим прежнее значение this.hasMoreChanges
     }
 

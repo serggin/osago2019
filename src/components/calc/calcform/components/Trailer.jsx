@@ -1,19 +1,24 @@
 import React from 'react'
 import {calcView} from '../../../App.jsx'
 import FormCheckbox1 from "../../../form/FormCheckbox1.jsx";
+//import {setTrailer} from "../../../../actions";
 
 export default class Trailer extends React.Component {
     constructor(props) {
         super(props)
         console.warn('constructor props=', props)
         this.state = {
-            trailer: {selected: false,enabled:false, }
+            selected: props.trailer.value
         }
     }
-    assignedHandler(key, value) {
-        this.props.view.assign(key, value);
+    assignedHandler(value) {
+        this.props.setTrailer({value:value});
+        this.setState({selected:value})
     }
-
+    componentDidUpdate(prevProps) {
+        if (this.state.selected != this.props.trailer.value)
+            this.setState({selected:this.props.trailer.value})
+    }
     render() {
 
         return (
@@ -21,11 +26,10 @@ export default class Trailer extends React.Component {
             <FormCheckbox1 name="trailer" formlabel="ТС с прицепом"
                            id="trailer"
                            labelProps={{className: "col-lg-12 label label-info"}} label="Да, есть прицеп"
-                           selected={this.state.trailer.selected}
-                           enabled={this.state.trailer.enabled}
-
-                           assigned={(v)=>this.assignedHandler('trailer', v)}/>
-
+                           selected={this.state.selected}
+                           enabled={!this.props.trailer.disabled}
+                           assigned={(v)=>this.assignedHandler(v)}
+            />
 
         )
     }

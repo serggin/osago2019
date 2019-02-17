@@ -8,7 +8,7 @@ export default class TypeTC extends React.Component {
         super(props)
         console.warn('constructor props=', props)
         this.state = {
-            typeTC: {selected: "tc21"}
+            selected: props.typeTC
         }
     }
     render() {
@@ -22,7 +22,7 @@ export default class TypeTC extends React.Component {
                                     options={options}
                                     placeholder="Выберите тип ТС"
                                     assigned={(v) => this.props.setTypeTC(v)}
-                                    selected={this.state.typeTC.selected}
+                                    selected={this.state.selected}
                         />
                     )
 

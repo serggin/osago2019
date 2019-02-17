@@ -4,7 +4,7 @@ import {
     SET_PERIOD, SET_REGIONS, SET_CITY,
     SET_CRIME,
     SET_LIMIT, SET_AGE, SET_DRIVINGSTAGE, SET_FIXED_PERIOD,
-    SET_KBM, SET_PERIOD_KBM, DISABLE_CRIME,
+    SET_KBM, SET_PERIOD_KBM,
 } from '../actions/actionTypes'
 
 export function ownerReducer (state = 'fiz', action) {
@@ -37,12 +37,21 @@ export function typeTCReducer (state = 'tc22', action) {
             return state
     }
 }
+export function crimeReducer (state = {value: false, disabled: false}, action) {
+    switch (action.type) {
+        case SET_CRIME:
+            //return {...state, ...{value:action.crime}}
+            return {...state, ...action.crime}
 
-export function trailerReducer (state=null, action) {
+        default:
+            return state
+    }
+}
+
+export function trailerReducer (state = {value: false, disabled: true}, action) {
     switch (action.type) {
         case SET_TRAILER:
-            return action.trailer
-
+            return {...state, ...action.trailer}
         default:
             return state
     }
@@ -71,17 +80,7 @@ export function termReducer (state = {value: 't12', fixed: false, disabled: fals
     }
 }
 
-export function crimeReducer (state = {value: false, disabled: false}, action) {
-    switch (action.type) {
-        case SET_CRIME:
-            //return {...state, ...{value:action.crime}}
-            return {...state, ...action.crime}
-       /* case DISABLE_CRIME:
-            return {...state, ...{disabled:action.disabled}}*/
-        default:
-            return state
-    }
-}
+
 
 export function periodReducer (state = 't0', action) {
     switch (action.type) {

@@ -1,7 +1,7 @@
 import React from 'react'
 import {calcView} from '../../../App.jsx'
 import FormCheckbox1 from "../../../form/FormCheckbox1.jsx";
-import {setCrime} from "../../../../actions";
+//import {setCrime} from "../../../../actions";
 
 export default class Crime extends React.Component {
     constructor(props) {
