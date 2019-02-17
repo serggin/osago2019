@@ -1,8 +1,10 @@
-import {SET_OWNER, SET_REGISTRATION, SET_TYPETC, SET_TRAILER,SET_POWERTC,
-        SET_TERM,  SET_FIXED_TERM,DISABLE_TERM, SET_PERIOD,SET_REGIONS,SET_CITY,
-        SET_CRIME, SET_LIMIT, SET_AGE,SET_DRIVINGSTAGE,SET_FIXED_PERIOD,
-        SET_KBM, SET_PERIOD_KBM,
-
+import {
+    SET_OWNER, SET_REGISTRATION, SET_TYPETC, SET_TRAILER, SET_POWERTC,
+    SET_TERM, SET_FIXED_TERM, DISABLE_TERM,
+    SET_PERIOD, SET_REGIONS, SET_CITY,
+    SET_CRIME,
+    SET_LIMIT, SET_AGE, SET_DRIVINGSTAGE, SET_FIXED_PERIOD,
+    SET_KBM, SET_PERIOD_KBM, DISABLE_CRIME,
 } from '../actions/actionTypes'
 
 export function ownerReducer (state = 'fiz', action) {
@@ -69,6 +71,18 @@ export function termReducer (state = {value: 't12', fixed: false, disabled: fals
     }
 }
 
+export function crimeReducer (state = {value: false, disabled: false}, action) {
+    switch (action.type) {
+        case SET_CRIME:
+            //return {...state, ...{value:action.crime}}
+            return {...state, ...action.crime}
+       /* case DISABLE_CRIME:
+            return {...state, ...{disabled:action.disabled}}*/
+        default:
+            return state
+    }
+}
+
 export function periodReducer (state = 't0', action) {
     switch (action.type) {
         case SET_PERIOD:
@@ -108,15 +122,7 @@ export function cityReducer (state = null, action) {
             return state
     }
 }
-export function crimeReducer (state = null, action) {
-    switch (action.type) {
-        case SET_CRIME:
-            return action.crime
 
-        default:
-            return state
-    }
-}
 export function limitReducer (state = false, action) {
     switch (action.type) {
         case SET_LIMIT:

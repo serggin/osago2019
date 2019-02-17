@@ -6,6 +6,7 @@ import { setCrime } from '../../../../actions'
 
 const mapStateToProps = (state, props) => {
     return {
+        crime:state.crime,
     }
 }
 const mapDispatchToProps = (dispatch, props) =>

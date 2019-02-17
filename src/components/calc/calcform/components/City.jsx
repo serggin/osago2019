@@ -22,7 +22,7 @@ export default class City extends React.Component {
                                     options={options}
                                     placeholder="Выберите место регистрации ТС"
                                     assigned={(v) => this.props.setCity(v)}
-                                    selected={options[0]}
+                                    selected={options[0].label}
                         />
                     )
 

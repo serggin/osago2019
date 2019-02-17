@@ -22,7 +22,7 @@ export default class PeriodKbm extends React.Component {
                                     options={options}
                                     placeholder="Выберите количество страховых возмещений за период КБМ"
                                     assigned={(v) => this.props.setPeriodKbm(v)}
-                                    selected={options[0]}
+                                    selected={options[0].label}
                         />
                     )
 
