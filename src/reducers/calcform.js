@@ -47,7 +47,15 @@ export function crimeReducer (state = {value: false, disabled: false}, action) {
             return state
     }
 }
+export function powerTCReducer (state = {value: 'p0', disabled: false}, action) {
+    switch (action.type) {
+        case SET_POWERTC:
+            return {...state, ...action.powerTC}
 
+        default:
+            return state
+    }
+}
 export function trailerReducer (state = {value: false, disabled: true}, action) {
     switch (action.type) {
         case SET_TRAILER:
@@ -57,15 +65,7 @@ export function trailerReducer (state = {value: false, disabled: true}, action) 
     }
 }
 
-export function powerTCReducer (state = 'p0', action) {
-    switch (action.type) {
-        case SET_POWERTC:
-            return action.powerTC
 
-        default:
-            return state
-    }
-}
 
 export function termReducer (state = {value: 't12', fixed: false, disabled: false}, action) {
     switch (action.type) {

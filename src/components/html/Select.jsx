@@ -95,7 +95,8 @@ class Select extends BaseElement {
 Select.propTypes = {
     assigned: PropTypes.func,
     options: PropTypes.array,
-  selected:PropTypes.string
+    selected:PropTypes.string,
+    enabled:PropTypes.bool,
 }
 Select.defaultProps = {
   selected: null

@@ -8,12 +8,26 @@ export default class PowerTC extends React.Component {
         super(props)
         console.warn('constructor props=', props)
         this.state = {
-            powerTC: {selected: "p0"}
+            selected: props.powerTC.value,
+            disabled: props.powerTC.disabled,
         }
     }
+
+    componentDidUpdate(prevProps) {
+
+        if (this.state.disabled != this.props.powerTC.disabled){
+            console.log('!!!!componentDidUpdate')
+            this.setState({
+                selected: this.props.powerTC.value,
+                disabled: this.props.powerTC.disabled
+            })
+        }
+      }
+
+
     render() {
 
-                    const options = calcView.getOptions("powerTC")
+                    const options = this.state.disabled ? [] : calcView.getOptions("powerTC")
 //                    console.log('options=', options)
                     return (
                         <FormSelect name="powerTC" formlabel= "Мощность ТС"
@@ -21,7 +35,8 @@ export default class PowerTC extends React.Component {
                                     options={options}
                                     placeholder="Выберите мощность двигателя ТС"
                                     assigned={(v) => this.props.setPowerTC(v)}
-                                    selected={this.state.powerTC.selected}
+                                    selected={this.state.selected}
+                                    enabled={!this.state.disabled}
                         />
                     )
     }

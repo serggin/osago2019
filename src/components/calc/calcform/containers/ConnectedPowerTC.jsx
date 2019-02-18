@@ -5,7 +5,8 @@ import { setPowerTC } from '../../../../actions'
 
 const mapStateToProps = (state, props) => {
     return {
-        owner: state.owner,
+        powerTC: state.powerTC,
+
     }
 }
 const mapDispatchToProps = (dispatch, props) =>

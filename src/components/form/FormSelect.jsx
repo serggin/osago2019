@@ -34,7 +34,7 @@ FormSelect.propTypes = {
     labelProps: PropTypes.object,
     divlabelProps: PropTypes.object,
 //    orientation: PropTypes.string,
-    disabled: PropTypes.string,
+    enabled:PropTypes.bool,
     options: PropTypes.array,
 }
 FormSelect.defaultProps = {

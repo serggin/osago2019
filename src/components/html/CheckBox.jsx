@@ -42,7 +42,7 @@ class CheckBox extends BaseElement{
 }
 CheckBox.propTypes = {
     assigned: PropTypes.func,
-  selected: PropTypes.bool,
+    selected: PropTypes.bool,
     enabled:PropTypes.bool,
 }
 CheckBox.defaultProps = {

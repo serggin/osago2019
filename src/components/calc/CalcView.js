@@ -8,7 +8,8 @@ import {
     setCrime as setCrimeAction,
     setLimit as setLimitAction,
     setPeriodKbm as setPeriodKbmAction,
-    setTrailer as setTrailerAction
+    setTrailer as setTrailerAction,
+    setPowerTC as setPowerTCAction,
 
 } from '../../actions'
 
@@ -46,6 +47,7 @@ export default class CalcView{
     }
     handleTypeTCDependencies(newVal, oldVal) {
         this.setTrailerDependency()
+        this.setPowerTCDependency()
     }
 
     handleOwnerDependencies(newVal, oldVal) {
@@ -108,7 +110,15 @@ export default class CalcView{
             crime: crime,
         })
     }
+    setPowerTCDependency(){
+        const {typeTC} = this.store.getState()
+        let obj = {value:null, disabled:true}
 
+        if ( ['tc22', 'tc23'].indexOf(typeTC) >= 0) {
+            obj={disabled:false }
+        }
+        this.updateStates({powerTC: obj})
+    }
     setTrailerDependency() {
         const {owner, typeTC} = this.store.getState()
         let disabled = false
@@ -323,6 +333,10 @@ export default class CalcView{
                     break;
                 case 'periodKbm':
                     this.store.dispatch(setPeriodKbmAction(value))
+                    break;
+
+                case 'powerTC' :
+                    this.store.dispatch(setPowerTCAction(value))
                     break;
                 default:
 //                    moreChanges = false;    // так ничего и не изменили
