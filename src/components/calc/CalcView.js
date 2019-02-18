@@ -2,7 +2,6 @@ import watch from 'redux-watch'
 import {
     setFixedTerm as setFixedTermAction,
     setTerm as setTermAction,
-    setFixedPeriod as setFixedPeriodAction,
     setPeriod as setPeriodAction,
     setDrivingstage as setDrivingstageAction,
     setCrime as setCrimeAction,
@@ -87,16 +86,17 @@ export default class CalcView{
 //                term = 't12';
                 term = {fixed: false};
                 crime= {disabled:false};
+                period = {disabled: false};
                 break;
             case "regNo":
                 term = {term: 't20', fixed: 't20'};  // до 20 дней
-                fixedPeriod = 't8';
-                period = 't8';
+                period = {value: null, disabled: true};
                 crime={disabled:false};
                 break;
             case "regFo":
                 term = {fixed: false};
                 crime= {value: false, disabled:true}
+                period = {value: null, disabled: true};
                 break;
             default:
                 //Только при переходе на "regFo" с "regRu" или с "regRu" нужно сбросить:
@@ -105,7 +105,6 @@ export default class CalcView{
         }
         this.updateStates({
             term: term,
-            fixedPeriod: fixedPeriod,
             period: period,
             crime: crime,
         })
@@ -313,10 +312,7 @@ export default class CalcView{
                 case 'term' :
                     this.store.dispatch(setTermAction(value))
                     break;
-                case 'fixedPeriod' :
-                    this.store.dispatch(setFixedPeriodAction(value))
-                    break;
-                case 'period' :
+                 case 'period' :
                     this.store.dispatch(setPeriodAction(value))
                     break;
                 case 'crime' :

@@ -5,8 +5,7 @@ import { setPeriod } from '../../../../actions'
 
 const mapStateToProps = (state, props) => {
     return {
-        registration: state.registration,
-      /*   fixedTerm: state.fixedTerm,*/
+        period: state.period,
     }
 }
 const mapDispatchToProps = (dispatch, props) =>

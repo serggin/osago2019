@@ -8,12 +8,25 @@ export default class Period extends React.Component {
         super(props)
         console.warn('constructor props=', props)
         this.state = {
-            period: {selected: "t0"}
+                selected: props.period.value,
+                disabled: props.period.disabled,
         }
     }
+
+    componentDidUpdate(prevProps) {
+
+        if (this.state.disabled != this.props.period.disabled){
+//            console.log('!!!!componentDidUpdate')
+            this.setState({
+                selected: this.props.period.value,
+                disabled: this.props.period.disabled
+            })
+        }
+    }
+
     render() {
 
-                    const options = calcView.getOptions("period")
+                    const options = this.state.disabled ? [] :calcView.getOptions("period")
 //                    console.log('options=', options)
                     return (
                         <FormSelect name="period" formlabel="Период использования ТС"
@@ -21,7 +34,8 @@ export default class Period extends React.Component {
                                     options={options}
                                     placeholder="Выберите период использования ТС"
                                     assigned={(v) => this.props.setPeriod(v)}
-                                    selected={this.state.period.selected}
+                                    selected={this.state.selected}
+                                    enabled={!this.state.disabled}
                         />
                     )
     }

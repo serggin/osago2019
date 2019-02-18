@@ -3,7 +3,7 @@ import {
     SET_TERM, SET_FIXED_TERM, DISABLE_TERM,
     SET_PERIOD, SET_REGIONS, SET_CITY,
     SET_CRIME,
-    SET_LIMIT, SET_AGE, SET_DRIVINGSTAGE, SET_FIXED_PERIOD,
+    SET_LIMIT, SET_AGE, SET_DRIVINGSTAGE,
     SET_KBM, SET_PERIOD_KBM,
 } from '../actions/actionTypes'
 
@@ -82,20 +82,10 @@ export function termReducer (state = {value: 't12', fixed: false, disabled: fals
 
 
 
-export function periodReducer (state = 't0', action) {
+export function periodReducer (state = {value: 't0', disabled: false}, action) {
     switch (action.type) {
         case SET_PERIOD:
-            return action.period
-
-        default:
-            return state
-    }
-}
-
-export function fixedPeriodReducer (state = null, action) {
-    switch (action.type) {
-        case SET_FIXED_PERIOD:
-            return action.period
+            return {...state, ...action.period}
 
         default:
             return state
