@@ -1,6 +1,6 @@
 import React from 'react'
 import Table from '../html/Table.jsx'
-
+import {calculator} from '../App.jsx'
 export default class CalcTable extends React.Component{
     constructor(props){
         super(props)
@@ -9,11 +9,11 @@ export default class CalcTable extends React.Component{
         this.state = {data: []};
     }
 
-    componentDidMount() {
+   /* componentDidMount() {
         this.setFactors([]);
-    }
+    }*/
 
-    setFactors(factors) {
+   /* setFactors(factors) {
         var data = [];
         var factorData = this.factorData();
         for (var key in factorData) {
@@ -21,7 +21,8 @@ export default class CalcTable extends React.Component{
             data.push([factorData[key], value]);
         }
         this.setState({data: data});
-    }
+    }*/
+   //вызвать салькулятор, кот все рассчитает
 
     factorData() {
         return {

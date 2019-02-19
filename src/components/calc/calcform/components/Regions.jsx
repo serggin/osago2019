@@ -8,12 +8,22 @@ export default class Regions extends React.Component {
         super(props)
         console.warn('constructor props=', props)
         this.state = {
-            regions: {selected: "r90"}
+            selected: props.regions.value,
+            disabled: props.regions.disabled,
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.state.disabled != this.props.regions.disabled){
+            this.setState({
+                selected: this.props.regions.value,
+                disabled: this.props.regions.disabled
+            })
         }
     }
     render() {
 
-                    const options = calcView.getOptions("regions")
+                    const options = this.state.disabled ? [] :calcView.getOptions("regions")
 //                    console.log('options=', options)
                     return (
                         <FormSelect name="regions" formlabel="Регион регистрации ТС"
@@ -21,7 +31,8 @@ export default class Regions extends React.Component {
                                     options={options}
                                     placeholder="Выберите регион регистрации ТС"
                                     assigned={(v) => this.props.setRegions(v)}
-                                    selected={this.state.regions.selected}
+                                    selected={this.state.selected}
+                                    enabled={!this.state.disabled}
                         />
                     )
     }

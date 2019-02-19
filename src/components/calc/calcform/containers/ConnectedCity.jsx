@@ -5,7 +5,8 @@ import { setCity } from '../../../../actions'
 
 const mapStateToProps = (state, props) => {
     return {
-        regions: state.regions
+        regions: state.regions,
+        city: state.city
         /* registration: state.registration,
         fixedTerm: state.fixedTerm,*/
     }

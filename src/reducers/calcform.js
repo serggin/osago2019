@@ -7,6 +7,7 @@ import {
     SET_KBM, SET_PERIOD_KBM,
 } from '../actions/actionTypes'
 
+
 export function ownerReducer (state = 'fiz', action) {
     switch (action.type) {
         case SET_OWNER:
@@ -92,20 +93,20 @@ export function periodReducer (state = {value: 't0', disabled: false}, action) {
     }
 }
 
-export function regionsReducer (state = 'r90', action) {
+export function regionsReducer (state = {value: 'r90', disabled: false},  action) {
     switch (action.type) {
         case SET_REGIONS:
-            return action.regions
+            return {...state, ...action.regions}
 
         default:
             return state
     }
 }
 
-export function cityReducer (state = null, action) {
+export function cityReducer (state = {value: null, disabled: false}, action) {
     switch (action.type) {
         case SET_CITY:
-            return action.city
+            return {...state, ...action.city}
 
         default:
             return state

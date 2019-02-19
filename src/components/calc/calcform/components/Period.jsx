@@ -6,7 +6,7 @@ import {setPeriod} from "../../../../actions";
 export default class Period extends React.Component {
     constructor(props) {
         super(props)
-        console.warn('constructor props=', props)
+//        console.warn('constructor props=', props)
         this.state = {
                 selected: props.period.value,
                 disabled: props.period.disabled,

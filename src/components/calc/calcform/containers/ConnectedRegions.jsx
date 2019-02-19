@@ -5,6 +5,7 @@ import { setRegions } from '../../../../actions'
 
 const mapStateToProps = (state, props) => {
     return {
+        regions: state.regions,
         /* registration: state.registration,
         fixedTerm: state.fixedTerm,*/
     }

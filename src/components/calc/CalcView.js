@@ -9,6 +9,8 @@ import {
     setPeriodKbm as setPeriodKbmAction,
     setTrailer as setTrailerAction,
     setPowerTC as setPowerTCAction,
+    setRegions as setRegionsAction,
+    setCity as setCityAction,
 
 } from '../../actions'
 
@@ -79,6 +81,8 @@ export default class CalcView{
         var fixedPeriod;
         var period;
         var crime;
+        var regions;
+        var city;
 
         switch (newVal) {
             case "regRu":
@@ -87,16 +91,23 @@ export default class CalcView{
                 term = {fixed: false};
                 crime= {disabled:false};
                 period = {disabled: false};
+                regions = { disabled: false};
+                city = { disabled: false};
                 break;
             case "regNo":
                 term = {term: 't20', fixed: 't20'};  // до 20 дней
                 period = {value: null, disabled: true};
                 crime={disabled:false};
+                regions = { disabled: false};
+                city = { disabled: false};
                 break;
             case "regFo":
                 term = {fixed: false};
                 crime= {value: false, disabled:true}
                 period = {value: null, disabled: true};
+                regions = {value: null, disabled: true};
+                city = {value: null, disabled: true};
+
                 break;
             default:
                 //Только при переходе на "regFo" с "regRu" или с "regRu" нужно сбросить:
@@ -107,6 +118,8 @@ export default class CalcView{
             term: term,
             period: period,
             crime: crime,
+            regions: regions,
+            city: city,
         })
     }
     setPowerTCDependency(){
@@ -176,9 +189,14 @@ export default class CalcView{
                 case 'periodKbm':
                     this.store.dispatch(setPeriodKbmAction(value))
                     break;
-
                 case 'powerTC' :
                     this.store.dispatch(setPowerTCAction(value))
+                    break;
+                case 'regions' :
+                    this.store.dispatch(setRegionsAction(value))
+                    break;
+                case 'city' :
+                    this.store.dispatch(setCityAction(value))
                     break;
                 default:
 //                    moreChanges = false;    // так ничего и не изменили

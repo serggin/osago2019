@@ -1,19 +1,29 @@
 import React from 'react'
 import FormSelect from "../../../form/FormSelect.jsx";
 import {calcView} from '../../../App.jsx'
-import {setCity} from "../../../../actions";
 
 export default class City extends React.Component {
     constructor(props) {
         super(props)
         console.warn('city constructor props=', props)
-        //const {city} = calcView.getInitialStates();
-       // this.state = { city: city }
+        this.state = {
+            selected: props.city.value,
+            disabled: props.city.disabled,
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.state.disabled != this.props.city.disabled){
+            this.setState({
+                selected: this.props.city.value,
+                disabled: this.props.city.disabled
+            })
+        }
     }
 
     render() {
+        const options = calcView.getOptions("city", this.props.regions.value);
 
-                    const options = calcView.getOptions("city", this.props.regions);
 //                    const options = contextValue.calcView.getOptions("city", this.state.regions)
 //                    console.log('options=', options)
                     return (
@@ -22,7 +32,8 @@ export default class City extends React.Component {
                                     options={options}
                                     placeholder="Выберите место регистрации ТС"
                                     assigned={(v) => this.props.setCity(v)}
-                                    selected={options[0].label}
+                                    selected={this.state.selected}
+                                    enabled={!this.state.disabled}
                         />
                     )
 
