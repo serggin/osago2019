@@ -8,10 +8,9 @@ export default class Premium extends React.Component{
     }
 
     render(){
-        // let premium = calculator.calculate(this.props)
-        //const {mainBuilding,sauna,dop1,dop2, im, go} = this.props
-        //let premium = calculator.calculate({mainBuilding,sauna,dop1,dop2, im, go})
-        let premium = calculator.calculate({})
+        const {owner,registration, typeTC, trailer, powerTC, period, term, regions, city, crime, limit, kbm, age, drivingstage, periodKbm } = this.props
+
+        let premium = calculator.calculate({owner, registration, typeTC, trailer,powerTC, regions, city, crime, limit, kbm, age, drivingstage,periodKbm})
         return(
             <div className='premium-block'>
                 страховая премия: <br/> <span>{premium}</span>

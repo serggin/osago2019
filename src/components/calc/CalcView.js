@@ -113,7 +113,7 @@ export default class CalcView{
         const {typeTC} = this.store.getState()
         let obj = {value:null, disabled:true}
 
-        if ( ['tc22', 'tc23'].indexOf(typeTC) >= 0) {
+        if ( ['tc21','tc22', 'tc23'].indexOf(typeTC) >= 0) {
             obj={disabled:false }
         }
         this.updateStates({powerTC: obj})
@@ -121,7 +121,7 @@ export default class CalcView{
     setTrailerDependency() {
         const {owner, typeTC} = this.store.getState()
         let disabled = false
-        if (owner == "fiz" && ['tc22', 'tc23'].indexOf(typeTC) >= 0) {
+        if (owner == "fiz" && ['tc21','tc22', 'tc23'].indexOf(typeTC) >= 0) {
             disabled = true
         }
         this.updateStates({trailer: {value:false, disabled:disabled}})
@@ -139,161 +139,7 @@ export default class CalcView{
         }
     }
 
-    /*  getInitialStates() {
-          return {
-              owner: {buttonChecked: "fiz"},
-              typeTC:{selected: "tc22", enabled:true },
-              registration: {buttonChecked: "regRu"},
-              trailer: {selected: false, enabled:false},
-              powerTC:{selected: 'p70'},
-              period: {selected:"t8"},
-              regions:{enabled: true},
-              city:{regions:"r90", enabled: false},
-              term:{enabled:'false'},
-              limit: {selected: false},
-              driving_experience:{enabled:true},
-              region: {region: null},
-              crime: {selected: false, enabled:false},
-              age:{enabled: true},
-              drivingstage:{age:"de0", enabled: false},
 
-              kbm:{enabled: true},
-              periodKbm:{kbm:"kbm1", enabled: false},
-          }
-      }*/
-
-    /*
-     * Обработчик изменения состояния в Redux store
-     */
-/*
-    stateChanged() {
-        if (++this.cnt > 100) {
-            alert("зациклилось!")
-            return
-        }
-        if (!this.isBusy) { //обработчик еще не запущен
-            this.isBusy = true; // теперь запущен
-//            console.warn('stateChanged()')
-            this.cycle = 0;
-            this.handleCycle()  // выполняем цикл обработки
-        }
-    }
-*/
-
-    /*
-     * Выполнение цикла обработки - обработка всех зависимостей
-     */
-/*
-    handleCycle() {
-        if (++this.cycle > 5) {
-            alert("Циклы зациклились!")
-            return
-        }
-        this.state = this.store.getState()
-        this.handleDependences()    // Обработка зависимостей
-        this.updateStates()     // Оновление состояний в Redux store
-        if (this.hasMoreChanges) { // было изменение хотя одного состояния
-            this.handleCycle()      // нужно выполнить очередной цикл обработки зависимостей
-        }
-    }
-*/
-
-    /*
-     * Обработка зависимостей состояний Redux store
-     */
-/*
-    handleDependences() {
-        this.hasMoreChanges = false;    // изменений пока нет
-        this.statesToUpdate = {};   //и объект с новыми состояниями пока пуст
-        this.handleOwnerDepencies();    //owner
-        this.handleRegistrationDependencies0();
-        //this.handleTypeTCDepencies(); стр 7
-    }
-*/
-
-
-
-/*
-    handleOwnerDepencies0() {
-        //this.params.yurPeriod = false;
-        switch (this.store.getState().owner) {
-            case "yur":
-                    this.addUpdateStates({
-                            limit: true,
-                         /!*   age: null,
-                            drivingstage: null,*!/
-                        })
-                break;
-
-            case "fiz":
-                break;
-        }
-    }
-*/
-
-/*
-    handleRegistrationDependencies0() {
-        var term;  // = undefined
-        var fixedPeriod;
-        var period;
-        var crime;
-
-        switch (this.store.getState().registration) {
-            case "regRu":
-//                fixedTerm = 't12';  // 1 год
-//                term = 't12';
-                term = {fixed: false};
-                crime= {disabled:false};
-                break;
-            case "regNo":
-                term = {term: 't20', fixed: 't20'};  // до 20 дней
-                fixedPeriod = 't8';
-                period = 't8';
-                crime={disabled:false};
-                break;
-            case "regFo":
-                term = {fixed: false};
-                crime= {value: false, disabled:true}
-                break;
-            default:
-                //Только при переходе на "regFo" с "regRu" или с "regRu" нужно сбросить:
-                if (['t12', 't20'].indexOf(this.store.getState().term) >= 0)
-                    term = {value:null};
-        }
-        this.addUpdateStates({
-            term: term,
-            fixedPeriod: fixedPeriod,
-            period: period,
-            crime: crime,
-        })
-    }
-*/
-
-    /*
-     * Запомнить состояния, которые предстоит обновить
-     * (дописать/заменить в объект this.statesToUpdate)
-     */
-/*
-    addUpdateStates (states) {
-        console.log("addUpdateStates() states=", states);
-        this.statesToUpdate = {...this.statesToUpdate, ...states};
-        console.log("statesToUpdate=", this.statesToUpdate);
-    }
-*/
-
-    /*
-     * Обновить состояния из this.statesToUpdate в Redux store
-     */
-/*
-    updateStates0() {
-        console.warn('updateStates(): ', this.statesToUpdate)
-        for (let [key, value] of Object.entries(this.statesToUpdate)) {
-            if (value !== undefined) {  //Если value === undefined, то обновлять не чего
-                this.updateState(key, value)
-            }
-        }
-    }
-*/
 
     /*
      * Обновить состояния в Redux store
