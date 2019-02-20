@@ -9,11 +9,12 @@ export default class CalcTable extends React.Component{
         this.state = {data: []};
     }
 
-   /* componentDidMount() {
-        this.setFactors([]);
-    }*/
+    componentDidMount() {
+//        this.setFactors([]);
+        this.calculate()
+    }
 
-   /* setFactors(factors) {
+    setFactors(factors) {
         var data = [];
         var factorData = this.factorData();
         for (var key in factorData) {
@@ -21,8 +22,21 @@ export default class CalcTable extends React.Component{
             data.push([factorData[key], value]);
         }
         this.setState({data: data});
-    }*/
-   //вызвать салькулятор, кот все рассчитает
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps !== this.props) {
+            this.calculate()
+        }
+    }
+
+    calculate() {
+        calculator.calculate(this.props, this.getFactorKeys())
+        const {term} = calculator.getFactors();
+        this.setFactors({
+            term: term
+        })
+    }
 
     factorData() {
         return {
@@ -38,6 +52,14 @@ export default class CalcTable extends React.Component{
 
             typeTC: 'Базовый тариф',
         }
+    }
+
+    /**
+     * Выдать массив ключей коэффициентов (для контроллера)
+     * @returns {Array}
+     */
+    getFactorKeys() {
+        return Object.keys(this.factorData());
     }
 
     render(){

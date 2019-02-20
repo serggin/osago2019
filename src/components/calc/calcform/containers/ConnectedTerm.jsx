@@ -6,7 +6,7 @@ import { setTerm } from '../../../../actions'
 const mapStateToProps = (state, props) => {
     return {
         registration: state.registration,
-        fixedTerm: state.fixedTerm,
+        term: state.term,
     }
 }
 const mapDispatchToProps = (dispatch, props) =>

@@ -68,7 +68,7 @@ export function trailerReducer (state = {value: false, disabled: true}, action) 
 
 
 
-export function termReducer (state = {value: 't12', fixed: false, disabled: false}, action) {
+export function termReducer (state = {value: 't10', fixed: false, disabled: false}, action) {
     switch (action.type) {
         case SET_TERM:
             return {...state, ...{value:action.term}}

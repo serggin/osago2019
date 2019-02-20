@@ -8,20 +8,33 @@ export default class Term extends React.Component {
         super(props)
         console.warn('constructor props=', props)
         this.state = {
-            term: {selected: "t0"}
+            selected: props.term.value,
+            disabled: props.term.disabled,
         }
     }
+
+    componentDidUpdate(prevProps) {
+
+        if (this.state.disabled != this.props.term.disabled){
+            this.setState({
+                selected: this.props.term.value,
+                disabled: this.props.term.disabled
+            })
+        }
+    }
+
     render() {
 
-                    const options = calcView.getOptions("term")
+                    const options = this.state.disabled ? [] :calcView.getOptions("term")
 //                    console.log('options=', options)
                     return (
                         <FormSelect name="term" formlabel="Срок договора"
                                     labelProps={{className: "col-lg-12 label label-info mandatory-parameter"}}
                                     options={options}
                                     placeholder="Выберите срок договора"
-                                    assigned={(v) => this.props.setTerm(v)}
-                                    selected={this.state.term.selected}
+                                    assigned={(v) => this.props.setTerm({value:v})}
+                                    selected={this.state.selected}
+                                    enabled={!this.state.disabled}
                         />
                     )
     }

@@ -261,9 +261,9 @@ export default class CalcView{
             case "term":
                 /*  console.log("OsagoView.getOptions term this.params.fixedTerm=" + this.params.fixedTerm);*/
                 var obj = this.model.getTerm();
-                if (this.store.getState().fixedTerm) {  //это key или null
+                if (this.store.getState().term.fixedTerm) {  //это key или null
                     //для фиксированного key формируем единствееную опцию
-                    var key = this.store.getState().fixedTerm;
+                    var key = this.store.getState().term.fixedTerm;
                     if (obj.hasOwnProperty(key)) {
                         options.push({value: key, label: obj[key].label, selected: true});
                     }

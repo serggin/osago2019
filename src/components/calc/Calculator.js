@@ -1,15 +1,70 @@
 export default class Calculator{
     constructor(calcModel){
-        this.calcModel = calcModel;
+        this.model = calcModel;
 
     }
 
-    calculate(state){
-        console.log('**********calculate  state=', state)
-        this.state = state;
-        const premium = this.calcPremium(this.state)
+    calculate(formParameters, factorKeys){
+        console.log('**********calculate  formParameters=', formParameters)
+        this.params = formParameters;
+        this.factors = this.getDefaultFactors(factorKeys);
 
-        return premium
+        this.loadFromModel();
+        this.calculateFactors();
+    }
+
+    /**
+     * Начальные значения коэффициентов калькулятора
+     */
+    getDefaultFactors(factorKeys) {
+        var factors = {};
+        var keys = factorKeys;
+        for (var i in keys) {
+            factors[keys[i]] = null; //no value
+        }
+        return factors;
+    }
+
+    getFactors() {
+        console.warn('this.factors', this.factors)
+        return this.factors;
+    }
+
+    loadFromModel() {
+        this.typeTC = this.model.getTypeTC(this.params.typeTC, this.params.owner);//value
+        this.regions = this.model.getRegions(this.params.regions);
+        this.powerTC = this.model.getPowerTC(this.params.powerTC);//value
+        if (this.params.term)
+            this.term = this.model.getTerm(this.params.term);//value
+        if (this.params.period)
+            this.period = this.model.getPeriod(this.params.period);
+
+        this.kbm = this.model.getKbm(this.params.kbm);  // value ??
+        console.log('loadFromModel() this.params=', this.params)
+//        this.driving_experience = this.model.getDriving_experience(this.params.driving_experience); // value ??
+    }
+
+    /**
+     * Рассчитать коэффициенты
+     */
+    calculateFactors() {
+        this.factors.term = this.getTerm();
+/*
+        this.factors.period = this.getPeriod();
+        this.factors.trailer = this.getTrailer();
+        this.factors.typeTC = this.getTypeTC();
+        this.factors.powerTC = this.getPowerTC();
+        this.factors.kbm = this.getKbm();
+        this.factors.limit = this.getLimit();
+        this.factors.crime = this.getCrime();
+        this.factors.territory = this.getTerritory();
+        this.factors.driving_experience = this.getDriving_experience();
+*/
+    }
+
+    getTerm() {
+        console.log('getTerm() this.term=', this.term)
+        return this.params.term ? this.term.coeff : null;//вернет null если физ лицо, Россия, на 1 год, ТС кат В
     }
 
     calcPremium(){
