@@ -30,7 +30,7 @@ export default class Regions extends React.Component {
                                     labelProps={{className: "col-lg-12 label label-info mandatory-parameter"}}
                                     options={options}
                                     placeholder="Выберите регион регистрации ТС"
-                                    assigned={(v) => this.props.setRegions(v)}
+                                    assigned={(v) => this.props.setRegions({value:v})}
                                     selected={this.state.selected}
                                     enabled={!this.state.disabled}
                         />

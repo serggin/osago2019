@@ -33,7 +33,7 @@ export default class Period extends React.Component {
                                     labelProps={{className: "col-lg-12 label label-info mandatory-parameter"}}
                                     options={options}
                                     placeholder="Выберите период использования ТС"
-                                    assigned={(v) => this.props.setPeriod(v)}
+                                    assigned={(v) => this.props.setPeriod({value:v})}
                                     selected={this.state.selected}
                                     enabled={!this.state.disabled}
                         />

@@ -31,7 +31,7 @@ export default class City extends React.Component {
                                     labelProps={{className: "col-lg-12 label label-info mandatory-parameter"}}
                                     options={options}
                                     placeholder="Выберите место регистрации ТС"
-                                    assigned={(v) => this.props.setCity(v)}
+                                    assigned={(v) => this.props.setCity({value:v})}
                                     selected={this.state.selected}
                                     enabled={!this.state.disabled}
                         />
