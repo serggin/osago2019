@@ -33,13 +33,13 @@ export default class CalcTable extends React.Component{
 
     calculate() {
         calculator.calculate(this.props, this.getFactorKeys())
-        const {typeTC,powerTC,term, period,city,crime,kbm, limit} = calculator.getFactors();
+        const {typeTC,powerTC,term, period,city,crime,kbm, limit,trailer} = calculator.getFactors();
 
         this.setFactors({
             powerTC:powerTC,
             term: term,
             period:period,
-            //trailer:trailer,
+            trailer:trailer,
            // kbm:kbm,
 
 

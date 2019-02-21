@@ -91,20 +91,21 @@ export default class Calculator{
         console.log('getTrailer() this.params.owner=', this.params.owner)
         console.log('getTrailer() this.params.typeTC=', this.params.typeTC)
         console.log('getTrailer() this.params.trailer=', this.params.trailer)
-      /*  if(this.params.owner=='yur' && (this.params.typeTC=='tc22' || this.params.typeTC=='tc23')){
-            return 1.16 ;// стр.18 п.6
-        }
-        if(this.params.typeTC=='tc31'){
-            return 1.40
-        }
-        if(this.params.typeTC=='tc32'){
-            return 1.25
-        }
-        if(this.params.typeTC=='tc7'){
-            return 1.24
-        }*/
+        if(this.params.trailer.value) {
+            if (this.params.owner == 'yur' && (this.params.typeTC == 'tc21' || this.params.typeTC == 'tc23')) {
+                return 1.16;// стр.18 п.6
+            }
+            if (this.params.typeTC == 'tc31') {
+                return 1.40
+            }
+            if (this.params.typeTC == 'tc32') {
+                return 1.25
+            }
+            if (this.params.typeTC == 'tc7') {
+                return 1.24
+            }
 
-
+        }
         return 1;
     }
     getPeriod() {

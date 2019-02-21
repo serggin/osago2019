@@ -30,9 +30,12 @@ export default class CalcModel {
         return this.typeTC;
     }
     getBaseTariff(tc_key, regions_key){
-        var stGroup = this.regions[regions_key].st_group;
-        return this.typeTC[tc_key][stGroup]
-
+        if(this.regions[regions_key]) {
+            var stGroup = this.regions[regions_key].st_group;
+            return this.typeTC[tc_key][stGroup]
+        }else{
+            return null;
+        }
     }
 
     getPowerTC(key=null){
@@ -41,17 +44,16 @@ export default class CalcModel {
         return this.powerTC;
     }
     getCityCoeff(regionKey, cityName, typeTCKey){
-        var str = this.regions[regionKey].city[cityName]
-
-        if(str!=undefined) {
-            var arr = str.split(', ')
-            if (typeTCKey != 'tc7') {
-                return arr[0]
-            } else {
-                return arr[1]
-            }
-
-        }
+        if(this.regions[regionKey]){
+             var str = this.regions[regionKey].city[cityName]
+             if(str!=undefined) {
+                var arr = str.split(', ')
+                if (typeTCKey != 'tc7') {
+                    return arr[0]
+                 } else {
+                    return arr[1]
+                }
+        }}
         return null;
     }
     getTerm(key=null){
