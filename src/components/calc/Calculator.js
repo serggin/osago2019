@@ -63,8 +63,8 @@ export default class Calculator{
     }
 
     getTerm() {
-        console.log('getTerm() this.term=', this.term)
-        return this.params.term ? this.term.coeff : null;//вернет null если физ лицо, Россия, на 1 год, ТС кат В
+        console.log('getTerm() this.params.term=', this.params.term)
+        return this.term ? this.term.coeff : null;//вернет null если физ лицо, Россия, на 1 год, ТС кат В
     }
 
     calcPremium(){

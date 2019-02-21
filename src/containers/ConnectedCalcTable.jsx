@@ -5,6 +5,7 @@ import {setPremium} from '../actions'
 //import { setErrorMessage, clearErrorMessage } from '../actions'
 
 const mapStateToProps = (state, props) => {
+//    console.warn('mapStateToProps() state=', state)
     return {
         owner:state.owner,
         registration:state.registration,

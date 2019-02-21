@@ -32,7 +32,7 @@ export default class Term extends React.Component {
                                     labelProps={{className: "col-lg-12 label label-info mandatory-parameter"}}
                                     options={options}
                                     placeholder="Выберите срок договора"
-                                    assigned={(v) => this.props.setTerm({value:v})}
+                                    assigned={(v) => this.props.setTerm(v)}
                                     selected={this.state.selected}
                                     enabled={!this.state.disabled}
                         />

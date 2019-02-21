@@ -4,7 +4,7 @@ import {calculator} from '../App.jsx'
 export default class CalcTable extends React.Component{
     constructor(props){
         super(props)
-        console.warn('constructor props=', props)
+//        console.warn('constructor props=', props)
         this.colHeaders = ["Наименование", "Коэффициент"];
         this.state = {data: []};
     }
@@ -26,6 +26,7 @@ export default class CalcTable extends React.Component{
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps !== this.props) {
+//            console.warn('CalcTable.componentDidUpdate() props=', this.props)
             this.calculate()
         }
     }
