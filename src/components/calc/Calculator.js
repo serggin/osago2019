@@ -42,6 +42,7 @@ export default class Calculator{
             this.period = this.model.getPeriod(this.params.period);
 
         this.kbm = this.model.getKbm(this.params.kbm);  // value ??
+
         console.log('loadFromModel() this.params=', this.params)
 //        this.driving_experience = this.model.getDriving_experience(this.params.driving_experience); // value ??
     }
@@ -55,19 +56,10 @@ export default class Calculator{
         this.factors.term = this.getTerm();
         this.factors.period = this.getPeriod();
         this.factors.city = this.getCity();
-
-      /*  this.factors.crime = this.getCrime();*/
-/*
-        this.factors.period = this.getPeriod();
+        this.factors.crime = this.getCrime();
         this.factors.trailer = this.getTrailer();
 
-        this.factors.powerTC = this.getPowerTC();
-        this.factors.kbm = this.getKbm();
-        this.factors.limit = this.getLimit();
 
-        this.factors.territory = this.getTerritory();
-        this.factors.driving_experience = this.getDriving_experience();
-*/
     }
     getTypeTC() {
         var tTC=this.params.typeTC;
@@ -80,15 +72,40 @@ export default class Calculator{
         console.log('getPowerTC() this.params.powerTC=', this.params.powerTC)
         return this.powerTC ? this.powerTC.coeff : null;//вернет null если физ лицо, Россия, на 1 год, ТС кат В
     }
+
+    getCrime() {
+        console.log('getCrime() this.params.crime=', this.params.crime)
+        return (this.params.crime.value==true)? 1.5 : null;//стр. 19 п.9 коэфф КН = 1.5
+    }
     getTerm() {
         console.log('getTerm() this.params.term=', this.params.term)
         return this.term ? this.term.coeff : null;//вернет null если физ лицо, Россия, на 1 год, ТС кат В
     }
     getCity() {
-
         var cityKoeff = this.model.getCityCoeff(this.params.regions, this.params.city.value, this.params.typeTC);
-        return cityKoeff ? cityKoeff : null;//вернет null если физ лицо, Россия, на 1 год, ТС кат В
+        return cityKoeff ? cityKoeff : null;  //вернет null если физ лицо, Россия, на 1 год, ТС кат В
 
+    }
+
+    getTrailer(){
+        console.log('getTrailer() this.params.owner=', this.params.owner)
+        console.log('getTrailer() this.params.typeTC=', this.params.typeTC)
+        console.log('getTrailer() this.params.trailer=', this.params.trailer)
+      /*  if(this.params.owner=='yur' && (this.params.typeTC=='tc22' || this.params.typeTC=='tc23')){
+            return 1.16 ;// стр.18 п.6
+        }
+        if(this.params.typeTC=='tc31'){
+            return 1.40
+        }
+        if(this.params.typeTC=='tc32'){
+            return 1.25
+        }
+        if(this.params.typeTC=='tc7'){
+            return 1.24
+        }*/
+
+
+        return 1;
     }
     getPeriod() {
         console.log('getPeriod() this.params.period=', this.params.period)
