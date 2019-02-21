@@ -29,6 +29,14 @@ export default class CalcModel {
             return this.typeTC[key];
         return this.typeTC;
     }
+    getBaseTariff(tc_key, regions_key){
+        console.log("getBaseTariff () 1= ", this.typeTC[tc_key])
+        console.log("getBaseTariff () 2= ", this.regions[regions_key].st_group)
+        var stGroup = this.regions[regions_key].st_group;
+        console.log('getBaseTariff()++++++++++++++++++++++++++++++++++++++', this.typeTC[tc_key][stGroup])
+        return this.typeTC[tc_key][stGroup]
+
+    }
 
     getPowerTC(key=null){
         if(key)

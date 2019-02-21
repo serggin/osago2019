@@ -48,25 +48,47 @@ export default class Calculator{
      * Рассчитать коэффициенты
      */
     calculateFactors() {
+        this.factors.typeTC = this.getTypeTC();
+        this.factors.powerTC = this.getPowerTC();
         this.factors.term = this.getTerm();
+        this.factors.period = this.getPeriod();
+      /*  this.factors.crime = this.getCrime();*/
 /*
         this.factors.period = this.getPeriod();
         this.factors.trailer = this.getTrailer();
-        this.factors.typeTC = this.getTypeTC();
+
         this.factors.powerTC = this.getPowerTC();
         this.factors.kbm = this.getKbm();
         this.factors.limit = this.getLimit();
-        this.factors.crime = this.getCrime();
+
         this.factors.territory = this.getTerritory();
         this.factors.driving_experience = this.getDriving_experience();
 */
     }
+    getTypeTC() {
+        var tTC=this.params.typeTC;
+        var reg=this.params.regions;
+        var tb =  this.model.getBaseTariff(tTC,reg)
 
+        return this.typeTC ? tb :null //this.model.getBaseTariff(this.params.typeTC,this.params.regions) : null;//вернет null если физ лицо, Россия, на 1 год, ТС кат В
+    }
+    getPowerTC() {
+        console.log('getPowerTC() this.params.powerTC=', this.params.powerTC)
+        return this.powerTC ? this.powerTC.coeff : null;//вернет null если физ лицо, Россия, на 1 год, ТС кат В
+    }
     getTerm() {
         console.log('getTerm() this.params.term=', this.params.term)
         return this.term ? this.term.coeff : null;//вернет null если физ лицо, Россия, на 1 год, ТС кат В
     }
 
+    getPeriod() {
+        console.log('getPeriod() this.params.period=', this.params.period)
+        return this.period ? this.period.coeff : null;
+    }
+    /*getCrime() {
+        console.log('getCrime() this.params.crime=', this.params.crime)
+        return this.crime ? this.crime.coeff : null;
+    }*/
     calcPremium(){
         let premium = 0;
         premium+=this.calcTypeTCPremium();
