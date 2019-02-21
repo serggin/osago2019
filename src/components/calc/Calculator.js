@@ -33,6 +33,8 @@ export default class Calculator{
     loadFromModel() {
         this.typeTC = this.model.getTypeTC(this.params.typeTC, this.params.owner);//value
         this.regions = this.model.getRegions(this.params.regions);
+        /*if(this.params.city)
+            this.city = this.model.getCity(this.params.city);*/
         this.powerTC = this.model.getPowerTC(this.params.powerTC);//value
         if (this.params.term)
             this.term = this.model.getTerm(this.params.term);//value
@@ -52,6 +54,8 @@ export default class Calculator{
         this.factors.powerTC = this.getPowerTC();
         this.factors.term = this.getTerm();
         this.factors.period = this.getPeriod();
+        this.factors.city = this.getCity();
+
       /*  this.factors.crime = this.getCrime();*/
 /*
         this.factors.period = this.getPeriod();
@@ -80,7 +84,12 @@ export default class Calculator{
         console.log('getTerm() this.params.term=', this.params.term)
         return this.term ? this.term.coeff : null;//вернет null если физ лицо, Россия, на 1 год, ТС кат В
     }
+    getCity() {
 
+        var cityKoeff = this.model.getCityCoeff(this.params.regions, this.params.city.value, this.params.typeTC);
+        return cityKoeff ? cityKoeff : null;//вернет null если физ лицо, Россия, на 1 год, ТС кат В
+
+    }
     getPeriod() {
         console.log('getPeriod() this.params.period=', this.params.period)
         return this.period ? this.period.coeff : null;

@@ -30,10 +30,7 @@ export default class CalcModel {
         return this.typeTC;
     }
     getBaseTariff(tc_key, regions_key){
-        console.log("getBaseTariff () 1= ", this.typeTC[tc_key])
-        console.log("getBaseTariff () 2= ", this.regions[regions_key].st_group)
         var stGroup = this.regions[regions_key].st_group;
-        console.log('getBaseTariff()++++++++++++++++++++++++++++++++++++++', this.typeTC[tc_key][stGroup])
         return this.typeTC[tc_key][stGroup]
 
     }
@@ -43,7 +40,20 @@ export default class CalcModel {
             return this.powerTC[key];
         return this.powerTC;
     }
+    getCityCoeff(regionKey, cityName, typeTCKey){
+        var str = this.regions[regionKey].city[cityName]
 
+        if(str!=undefined) {
+            var arr = str.split(', ')
+            if (typeTCKey != 'tc7') {
+                return arr[0]
+            } else {
+                return arr[1]
+            }
+
+        }
+        return null;
+    }
     getTerm(key=null){
         if(key)
             return this.term[key];
