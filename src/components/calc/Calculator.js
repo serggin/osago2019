@@ -5,7 +5,7 @@ export default class Calculator{
     }
 
     calculate(formParameters, factorKeys){
-        console.log('**********calculate  formParameters=', formParameters)
+//        console.log('**********calculate  formParameters=', formParameters)
         this.params = formParameters;
         this.factors = this.getDefaultFactors(factorKeys);
 
@@ -27,7 +27,7 @@ export default class Calculator{
     }
 
     getFactors() {
-        console.warn('this.factors', this.factors)
+//        console.warn('this.factors', this.factors)
         return this.factors;
     }
 
@@ -44,8 +44,7 @@ export default class Calculator{
 
         this.kbm = this.model.getKbm(this.params.kbm);  // value ??
 
-        console.log('loadFromModel() this.params=', this.params)
-//        this.driving_experience = this.model.getDriving_experience(this.params.driving_experience); // value ??
+//        console.log('loadFromModel() this.params=', this.params)
     }
 
     /**
@@ -62,8 +61,6 @@ export default class Calculator{
         this.factors.trailer = this.getTrailer();
         this.factors.limit = this.getLimit();
         this.factors.kbm = this.getKbm().toFixed(2);
-
-
     }
 
     getLimit(){
@@ -78,10 +75,7 @@ export default class Calculator{
     getTypeTC() {
         var tTC=this.params.typeTC;
         var reg=this.params.regions;
-        console.log('*** *** tTC=',tTC)
-        console.log('*** *** reg=',reg)
         if(reg==null){
-
             reg = 'r99'
         }
         var tb =  this.model.getBaseTariff(tTC,reg)
@@ -89,7 +83,7 @@ export default class Calculator{
         return this.typeTC ? tb :null //this.model.getBaseTariff(this.params.typeTC,this.params.regions) : null;//вернет null если физ лицо, Россия, на 1 год, ТС кат В
     }
     getPowerTC() {
-        console.log('getPowerTC() this.params.powerTC=', this.params.powerTC)
+//        console.log('getPowerTC() this.params.powerTC=', this.params.powerTC)
         return this.powerTC ? this.powerTC.coeff : null;//вернет null если физ лицо, Россия, на 1 год, ТС кат В
     }
     getBaseTariff(tc_key, regions_key){
@@ -100,7 +94,7 @@ export default class Calculator{
         return (this.params.crime.value==true)? 1.5 : null;//стр. 19 п.9 коэфф КН = 1.5
     }*/
     getTerm() {
-        console.log('getTerm() this.params.term=', this.params.term)
+//        console.log('getTerm() this.params.term=', this.params.term)
         return this.term ? this.term.coeff : null;//вернет null если физ лицо, Россия, на 1 год, ТС кат В
     }
     getCity() {
@@ -117,9 +111,9 @@ export default class Calculator{
     }
 
     getTrailer(){
-        console.log('getTrailer() this.params.owner=', this.params.owner)
-        console.log('getTrailer() this.params.typeTC=', this.params.typeTC)
-        console.log('getTrailer() this.params.trailer=', this.params.trailer)
+//        console.log('getTrailer() this.params.owner=', this.params.owner)
+//        console.log('getTrailer() this.params.typeTC=', this.params.typeTC)
+//        console.log('getTrailer() this.params.trailer=', this.params.trailer)
         if(this.params.trailer.value) {
             if (this.params.owner == 'yur' && (this.params.typeTC == 'tc21' || this.params.typeTC == 'tc23')) {
                 return 1.16;// стр.18 п.6
@@ -133,7 +127,6 @@ export default class Calculator{
             if (this.params.typeTC == 'tc7') {
                 return 1.24
             }
-
         }
         return 1;
     }
@@ -151,21 +144,6 @@ export default class Calculator{
         return this.crime ? this.crime.coeff : null;
     }*/
     calcPremium(){
-/*
-        let premium = 0;
-        premium+=this.calcTypeTCPremium();
-        premium+=this.calcPowerTCPremium();
-        premium+=this.calcPeriodPremium();
-        premium+=this.calcTermPremium();
-        premium+=this.calcKbmPremium();
-        premium+=this.calcTrailerPremium();
-        premium+=this.calcRegionsPremium();
-        premium+=this.calcLimitPremium();
-        premium+=this.calcCrimePremium();
-        premium+=this.calcAgeStagePremium();
-
-        return premium;
-*/
         let premium=1
         for (let [key, value] of Object.entries(this.factors)) {
             if (value) {
@@ -180,22 +158,9 @@ export default class Calculator{
         return Math.round(premium*100)/100
     }
 
-    /*calcTypeTCPremium(){
-         const {typeTC} = this.state
-        console.log('this.state>>>typeTC'+typeTC)
-         /* const {st_group} = regions
-       const baseTariff = typeTC[st_group]
-        console.log('st_group'+st_group)
-
-        const ssObj = this.calcModel.getTypeTcPremium(mainBuildingSS)
-        if(ssObj && buildingType){
-            return buildingType==='wood'? ssObj.wood : ssObj.stone;
-        }
-       return 10;* /
-}*/
     getTypeTCString(typeTC_index){
         return  this.model.getTypeTCString(typeTC_index);
-}
+    }
     getPowerTCString(powerTC_index){
         return  this.model.getPowerTCString(powerTC_index);
     }
@@ -211,11 +176,4 @@ export default class Calculator{
     getDriving_experienceString(age_index,drivingstage_index){
         return  this.model.getDriving_experienceString(age_index,drivingstage_index);
     }
-/*
-    calcAgeStagePremium(){
-        return 0
-    }
-*/
-
-
 }

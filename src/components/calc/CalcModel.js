@@ -50,7 +50,7 @@ export default class CalcModel {
         return null;
     }
     getDrivingstageCoeff(ageKey, drivingstageName){
-        console.log('this.age[ageKey] ',this.age[ageKey])
+//        console.log('this.age[ageKey] ',this.age[ageKey])
         if(this.age[ageKey]){
             var str = this.age[ageKey].drivingstage[drivingstageName]
             if(str!=undefined) {
@@ -60,15 +60,13 @@ export default class CalcModel {
     }
 
     getKbmCoeff(kbmKey, periodKbmKey=null){  //periodKbmKey - не используется
-        console.warn("-----------getKbmCoeff() kbmKey="+kbmKey);
+//        console.warn("-----------getKbmCoeff() kbmKey="+kbmKey);
         if(this.kbm[kbmKey]){
            // return this.kbm[kbmKey].periodKbm[periodKbmKey]
             return this.kbm[kbmKey].coeff;
-
         }else{
             return null
         }
-
     }
     getTerm(key=null){
         if(key)
@@ -101,8 +99,6 @@ export default class CalcModel {
         return this.age;
     }
     getDrivingstage(ageKey='de0', key=null){
-        //console.log('>>>>>>getDrivingstage  ageKey='+ageKey)
-        //console.log('>>>>>>getDrivingstage  key='+key)
         var age = this.getAge(ageKey);
         if(key)
             return age.drivingstage[key];

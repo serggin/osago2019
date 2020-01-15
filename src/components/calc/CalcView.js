@@ -113,7 +113,7 @@ export default class CalcView{
         var term;  // = undefined
        // var fixedPeriod;
         var period;
-        var crime;
+//        var crime;
         var regions;
         var city;
 
@@ -122,7 +122,7 @@ export default class CalcView{
 //                fixedTerm = 't12';  // 1 год
 //                term = 't12';
                 term = {fixed: false};
-                crime= {disabled:false};
+//                crime= {disabled:false};
                 period = {disabled: false};
                 regions = { disabled: false};
                 city = { disabled: false};
@@ -130,13 +130,13 @@ export default class CalcView{
             case "regNo":
                 term = {fixed: true, value:'t20', disabled:false}; // до 20 дней
                 period = {value: null, disabled: true };
-                crime={disabled:false};
+//                crime={disabled:false};
                 regions = { disabled: false};
                 city = { disabled: false};
                 break;
             case "regFo":
                 term = {fixed: false, disabled:false};
-                crime= {value: false, disabled:true}
+//                crime= {value: false, disabled:true}
                 period = {value: null, disabled: true};
                 regions = {value: null, disabled: true};
                 city = {value: null, disabled: true};
@@ -150,7 +150,7 @@ export default class CalcView{
         this.updateStates({
             term: term,
             period: period,
-            crime: crime,
+//            crime: crime,
             regions: regions,
             city: city,
         })
@@ -177,7 +177,7 @@ export default class CalcView{
      * Обновить состояния из this.statesToUpdate в Redux store
      */
     updateStates(states) {
-        console.warn('updateStates(): ', states)
+//        console.warn('updateStates(): ', states)
         for (let [key, value] of Object.entries(states)) {
             if (value !== undefined) {  //Если value === undefined, то обновлять не чего
                 this.updateState(key, value)
@@ -194,9 +194,12 @@ export default class CalcView{
      */
     updateState(key, value) {
         const oldValue = this.store.getState()[key] // старое значение
-//        var moreChanges = false;    // пока ничего не изменили
+/*
+        if (oldValue === undefined) {
+            console.error("oldValue === undefined", "key=", key);
+        }
+*/
         if (this.hasStateChanged(oldValue, value)) {    // проверка, отличается ли новое состояние от старого
-//            moreChanges = true // будем изменять
             switch (key) {
                 /*case 'fixedTerm' :
                     this.store.dispatch(setFixedTermAction(value))
@@ -241,7 +244,6 @@ export default class CalcView{
                     this.store.dispatch(setRegistration(value))
                     break;*/
                 default:
-//                    moreChanges = false;    // так ничего и не изменили
             }
         }
 //        this.hasMoreChanges = this.hasMoreChanges || moreChanges    // если изменили, то this.hasMoreChanges = true
@@ -269,15 +271,11 @@ export default class CalcView{
 
     getOptions(name, parameter = null) {
         var options = [];
-        console.log('CalcView.getOptions() name='+name)
+//        console.log('CalcView.getOptions() name='+name)
         switch (name) {
             case "typeTC":
                 var obj = this.model.getTypeTC();
-                console.log('typeTC obj=', obj)
                 var owner = this.store.getState().owner;
-             //   console.log('owner='+owner);
-                /* console.log("CalcView. getOptions() typeTC OBJ =");
-                 console.dir(obj);*/
                 for (var key in obj) {
                     if (owner==='yur'){
                         if(key==='tc22');
@@ -316,9 +314,7 @@ export default class CalcView{
                             options.push({value: key, label: obj[key].label, selected: false});
                         }
                     }
-                    //console.log("OsagoView. getOptions()");
-                    //console.dir(options);
-                }
+                 }
                 break;
 
             case "period":
@@ -341,9 +337,7 @@ export default class CalcView{
                 break;
             case "city":
                 var obj = this.model.getCity(parameter);
-                console.log('view getOptions city parameter='+parameter)
-                /* console.log('OsagoView.getOptions name=city, parameter=' + parameter);
-                 console.log(obj);*/
+//                console.log('view getOptions city parameter='+parameter)
                 for (var key in obj) {
                     options.push({value: key, label: key, selected: false});
                 }
@@ -358,7 +352,7 @@ export default class CalcView{
 
             case "drivingstage":
                 var obj = this.model.getDrivingstage(parameter);
-                console.log('view getOptions drivingstage  parameter='+parameter)
+//                console.log('view getOptions drivingstage  parameter='+parameter)
                 for (var key in obj) {
                     options.push({value: key, label: key});
                 }

@@ -25,16 +25,15 @@ class CheckBox extends BaseElement{
         this.setState({checked:newProps.selected});
     }
     render(){
-        console.log('***checkbox '+this.props.name);
         return <span>
-      <input type="checkbox" {...super.sanitizeProps()}
-             //value={!!this.state.checked}
-             value={this.state.checked ? 1 : 0}
-             checked={this.state.checked}
-             onChange={this.handleCheckbox}
-             disabled={this.props.enabled===false}
+            <input type="checkbox" {...super.sanitizeProps()}
+                 //value={!!this.state.checked}
+                 value={this.state.checked ? 1 : 0}
+                 checked={this.state.checked}
+                 onChange={this.handleCheckbox}
+                 disabled={this.props.enabled===false}
 
-      />
+            />
             {this.props.label}
     </span>
     }

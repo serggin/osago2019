@@ -5,7 +5,6 @@ const PropTypes = require('prop-types')
 class Table extends BaseElement{
     constructor(props){
         super(props);
-
     }
 
     getExcludeProps() {
@@ -15,8 +14,7 @@ class Table extends BaseElement{
 
 
     render(){
-        console.log('---+++++++++++++table.props=');
-        console.dir(this.props);
+//        console.dir(this.props);
         return <table {...super.sanitizeProps()} className="table table-striped" >
             {this.props.caption ? <caption>{this.props.caption}</caption> : null}
             {this.props.colHeaders ? <thead>
@@ -28,7 +26,6 @@ class Table extends BaseElement{
             </tr>
             </thead>:null}
             <tbody>
-
 
             {this.props.data.map((row,rowIndex)=>
                 <tr key={rowIndex}>

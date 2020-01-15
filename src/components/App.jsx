@@ -5,24 +5,17 @@ import CalcModel from "./calc/CalcModel";
 import CalcView from "./calc/CalcView";
 import Calculator from "./calc/Calculator";
 import ConnectedPremium from '../containers/ConnectedPremium.jsx'
-import CalcTable from "./calc/CalcTable.jsx";
+//import CalcTable from "./calc/CalcTable.jsx";
 import ConnectedCalcForm from "../containers/ConnectedCalcForm.jsx";
 import ConnectedCalcTable from "../containers/ConnectedCalcTable.jsx";
 
-
 const context = React.createContext();
-
 const calcModel = new CalcModel()
 const calcView = new CalcView(calcModel)
-
-
 const calculator = new Calculator(calcModel)
 
-
-
 const App = ({ store }) =>{
-    /*calculator.setSubscribe(store)*/
-    console.log('APP store=', store)
+//    console.log('APP store=', store)
     calcView.init(store)
     return(
 
@@ -39,7 +32,5 @@ const App = ({ store }) =>{
     )
 }
 
-
 export default App
 export { calculator, context, calcView}
-
