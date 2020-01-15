@@ -1,16 +1,19 @@
 import watch from 'redux-watch'
 import {
-    setFixedTerm as setFixedTermAction,
+   // setFixedTerm as setFixedTermAction,
     setTerm as setTermAction,
     setPeriod as setPeriodAction,
+    setAge as setAgeAction,
     setDrivingstage as setDrivingstageAction,
-    setCrime as setCrimeAction,
+   // setCrime as setCrimeAction,
     setLimit as setLimitAction,
-    setPeriodKbm as setPeriodKbmAction,
+   // setPeriodKbm as setPeriodKbmAction,
     setTrailer as setTrailerAction,
     setPowerTC as setPowerTCAction,
     setRegions as setRegionsAction,
     setCity as setCityAction,
+    setKbm,
+    //setRegistration,
 
 } from '../../actions'
 
@@ -39,13 +42,43 @@ export default class CalcView{
         let ownerWatch = watch(this.store.getState, 'owner')
         this.store.subscribe(ownerWatch((newVal, oldVal, objectPath) => {
             this.handleOwnerDependencies(newVal, oldVal)
+            this.handlePeriodKbmDependencies()
         }))
 
         let typeTCWatch = watch(this.store.getState, 'typeTC')
         this.store.subscribe(typeTCWatch((newVal, oldVal, objectPath) => {
             this.handleTypeTCDependencies(newVal, oldVal)
         }))
+
+        let limitWatch = watch(this.store.getState, 'limit')
+        this.store.subscribe(limitWatch((newVal, oldVal, objectPath) => {
+            this.handlePeriodKbmDependencies()
+        }))
+
+
+
     }
+
+    handlePeriodKbmDependencies(){
+        var owner = this.store.getState().owner;
+        var limit = this.store.getState().limit.value;
+        var age =this.store.getState().age;
+        var drivingstage=  this.store.getState().drivingstage;
+        if (owner=='fiz' && limit) {
+            var kbm = {value:'kbm5', fixed:true}
+        } else {
+            var kbm = {fixed:false}
+        }
+        if(limit){
+             age = {disabled: true, value:null}
+             drivingstage= {disabled: true, value:null}
+        }else{
+            age = {disabled: false}
+            drivingstage= {disabled: false}
+        }
+        this.updateStates({kbm:kbm, age:age, drivingstage:drivingstage})
+    }
+
     handleTypeTCDependencies(newVal, oldVal) {
         this.setTrailerDependency()
         this.setPowerTCDependency()
@@ -56,7 +89,7 @@ export default class CalcView{
         switch (newVal) {
             case "yur":
                 this.updateStates({
-                    limit: true,
+                    limit : {value: true, disabled:false}
 //                    trailer: {value: false, disabled:false}
                     /*   age: null,
                        drivingstage: null,*/
@@ -65,7 +98,7 @@ export default class CalcView{
 
             case "fiz":
                 this.updateStates({
-                    limit: false,
+                    limit : {value: false, disabled:true}
 //                    trailer: {value: false, disabled:false}
 
                 /*   age: null,
@@ -78,7 +111,7 @@ export default class CalcView{
 
     handleRegistrationDependencies(newVal, oldVal) {
         var term;  // = undefined
-        var fixedPeriod;
+       // var fixedPeriod;
         var period;
         var crime;
         var regions;
@@ -95,14 +128,14 @@ export default class CalcView{
                 city = { disabled: false};
                 break;
             case "regNo":
-                term = {term: 't20', fixed: 't20'};  // до 20 дней
-                period = {value: null, disabled: true};
+                term = {fixed: true, value:'t20', disabled:false}; // до 20 дней
+                period = {value: null, disabled: true };
                 crime={disabled:false};
                 regions = { disabled: false};
                 city = { disabled: false};
                 break;
             case "regFo":
-                term = {fixed: false};
+                term = {fixed: false, disabled:false};
                 crime= {value: false, disabled:true}
                 period = {value: null, disabled: true};
                 regions = {value: null, disabled: true};
@@ -165,23 +198,26 @@ export default class CalcView{
         if (this.hasStateChanged(oldValue, value)) {    // проверка, отличается ли новое состояние от старого
 //            moreChanges = true // будем изменять
             switch (key) {
-                case 'fixedTerm' :
+                /*case 'fixedTerm' :
                     this.store.dispatch(setFixedTermAction(value))
-                    break;
+                    break;*/
                 case 'term' :
                     this.store.dispatch(setTermAction(value))
                     break;
                  case 'period' :
                     this.store.dispatch(setPeriodAction(value))
                     break;
-                case 'crime' :
+               /* case 'crime' :
                     this.store.dispatch(setCrimeAction(value))
-                    break;
+                    break;*/
                 case 'trailer' :
                     this.store.dispatch(setTrailerAction(value))
                     break;
                 case 'limit' :
                     this.store.dispatch(setLimitAction(value))
+                    break;
+                case 'age' :
+                    this.store.dispatch(setAgeAction(value))
                     break;
                 case 'drivingstage':
                     this.store.dispatch(setDrivingstageAction(value))
@@ -198,6 +234,12 @@ export default class CalcView{
                 case 'city' :
                     this.store.dispatch(setCityAction(value))
                     break;
+                case 'kbm' :
+                    this.store.dispatch(setKbm(value))
+                    break;
+               /* case 'registration' :
+                    this.store.dispatch(setRegistration(value))
+                    break;*/
                 default:
 //                    moreChanges = false;    // так ничего и не изменили
             }
@@ -233,7 +275,7 @@ export default class CalcView{
                 var obj = this.model.getTypeTC();
                 console.log('typeTC obj=', obj)
                 var owner = this.store.getState().owner;
-                console.log('owner='+owner);
+             //   console.log('owner='+owner);
                 /* console.log("CalcView. getOptions() typeTC OBJ =");
                  console.dir(obj);*/
                 for (var key in obj) {
@@ -261,11 +303,11 @@ export default class CalcView{
             case "term":
                 /*  console.log("OsagoView.getOptions term this.params.fixedTerm=" + this.params.fixedTerm);*/
                 var obj = this.model.getTerm();
-                if (this.store.getState().term.fixedTerm) {  //это key или null
+                if (this.store.getState().term.fixed) {  //это key или null
                     //для фиксированного key формируем единствееную опцию
-                    var key = this.store.getState().term.fixedTerm;
-                    if (obj.hasOwnProperty(key)) {
-                        options.push({value: key, label: obj[key].label, selected: true});
+                    var val = this.store.getState().term.value;
+                    if (val) {
+                        options.push({value: val, label: obj[val].label, selected: true});
                     }
                 } else {
                     for (var key in obj) {
@@ -293,7 +335,8 @@ export default class CalcView{
                 var obj = this.model.getRegions();
                 //  console.log('period obj=', obj);
                 for (var key in obj) {
-                    options.push({value: key, label: obj[key].label, selected: false});
+                    if(key!=='r99')
+                        options.push({value: key, label: obj[key].label, selected: false});
                 }
                 break;
             case "city":
@@ -315,9 +358,9 @@ export default class CalcView{
 
             case "drivingstage":
                 var obj = this.model.getDrivingstage(parameter);
-                console.log('++++++view getOptions drivingstage parameter='+parameter)
+                console.log('view getOptions drivingstage  parameter='+parameter)
                 for (var key in obj) {
-                    options.push({value: key, label: key, selected: true});
+                    options.push({value: key, label: key});
                 }
                 break;
             case "kbm":
@@ -328,13 +371,13 @@ export default class CalcView{
                 }
                 break;
 
-            case "periodKbm":
+           /* case "periodKbm":
                 var obj = this.model.getPeriodKbm(parameter);
 
                 for (var key in obj) {
                     options.push({value: key, label: key, selected: true});
                 }
-                break;
+                break;*/
         }
         return options;
     }

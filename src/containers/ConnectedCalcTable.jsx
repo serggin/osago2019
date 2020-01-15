@@ -2,7 +2,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import CalcTable from '../components/calc/CalcTable.jsx'
 import {setPremium} from '../actions'
-//import { setErrorMessage, clearErrorMessage } from '../actions'
 
 const mapStateToProps = (state, props) => {
 //    console.warn('mapStateToProps() state=', state)
@@ -18,18 +17,14 @@ const mapStateToProps = (state, props) => {
         city:state.city,
         crime:state.crime,
         limit:state.limit,
-        kbm:state.kbm,
-        age:state.age,
-        drivingstage:state.drivingstage,
-        periodKbm:state.periodKbm,
-
-
-
+        kbm:state.kbm.value,
+        //periodKbm:state.periodKbm,
+        age:state.age.value,
+        drivingstage:state.drivingstage.value,
     }
 }
 const mapDispatchToProps = (dispatch, props) =>
     bindActionCreators({setPremium  }, dispatch)
-
 
 const ConnectedCalcTable = connect(mapStateToProps,mapDispatchToProps)(CalcTable)
 export default ConnectedCalcTable

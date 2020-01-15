@@ -15,13 +15,6 @@ export default class CalcModel {
         this.drivingstage = baseCoeff.age;
         this.kbm = baseCoeff.kbm;
         this.periodKbm = baseCoeff.kbm;
-        /*this.mainBuildingPremium = baseCoeff.mainBuildingPremium;
-        this.saunaPremium = baseCoeff.saunaPremium;
-        this.dop1Premium = baseCoeff.dop1Premium;
-        this.dop2Premium = baseCoeff.dop2Premium;
-        this.imPremium = baseCoeff.imPremium;
-        this.goPremium = baseCoeff.goPremium;*/
-
     }
 
     getTypeTC(key=null){
@@ -56,6 +49,27 @@ export default class CalcModel {
         }}
         return null;
     }
+    getDrivingstageCoeff(ageKey, drivingstageName){
+        console.log('this.age[ageKey] ',this.age[ageKey])
+        if(this.age[ageKey]){
+            var str = this.age[ageKey].drivingstage[drivingstageName]
+            if(str!=undefined) {
+                return str
+            }}
+        return null;
+    }
+
+    getKbmCoeff(kbmKey, periodKbmKey=null){  //periodKbmKey - не используется
+        console.warn("-----------getKbmCoeff() kbmKey="+kbmKey);
+        if(this.kbm[kbmKey]){
+           // return this.kbm[kbmKey].periodKbm[periodKbmKey]
+            return this.kbm[kbmKey].coeff;
+
+        }else{
+            return null
+        }
+
+    }
     getTerm(key=null){
         if(key)
             return this.term[key];
@@ -86,9 +100,9 @@ export default class CalcModel {
             return this.age[key];
         return this.age;
     }
-    getDrivingstage(ageKey, key=null){
-        console.log('>>>>>>getDrivingstage  ageKey'+ageKey)
-        console.log('>>>>>>getDrivingstage  key'+key)
+    getDrivingstage(ageKey='de0', key=null){
+        //console.log('>>>>>>getDrivingstage  ageKey='+ageKey)
+        //console.log('>>>>>>getDrivingstage  key='+key)
         var age = this.getAge(ageKey);
         if(key)
             return age.drivingstage[key];
@@ -100,14 +114,36 @@ export default class CalcModel {
             return this.kbm[key];
         return this.kbm;
     }
-    getPeriodKbm(kbmKey, key=null){
-        console.log('>>>>>>getDrivingstage  kbmKey'+kbmKey)
-        console.log('>>>>>>getDrivingstage  key'+key)
+
+    getTypeTCString(typeTC_index){
+        return this.typeTC[typeTC_index].label;
+    }
+    getPowerTCString(powerTC_index){
+        return this.powerTC[powerTC_index].label;
+    }
+    getTermString(term_index){
+        return this.term[term_index].label;
+    }
+    getPeriodString(period_index){
+        return this.period[period_index].label;
+    }
+    getKbmString(kbm_index){
+        return this.kbm[kbm_index].label;
+    }
+    getDriving_experienceString(age_index,drivingstage_index){
+        var age_str = this.getAge(age_index).label
+        var str = age_str + '  ' + drivingstage_index;
+        return str;
+    }
+
+   /* getPeriodKbm(kbmKey, key=null){
+        console.log('>>>>>>getPeriodKbm  kbmKey'+kbmKey)
+        console.log('>>>>>>getPeriodKbm  key'+key)
         var kbm = this.getKbm(kbmKey);
         if(key)
             return kbm.periodKbm[key];
         return kbm.periodKbm;
-    }
+    }*/
 }
 
 

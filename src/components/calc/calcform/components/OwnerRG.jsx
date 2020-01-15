@@ -1,11 +1,10 @@
 import React from 'react'
-//import {calcContext} from '../../../App.jsx'
 import FormRadioGroup from "../../../form/FormRadioGroup.jsx";
 
 export default class OwnerRG extends React.Component {
     constructor(props) {
         super(props)
-        console.warn('constructor props=', props)
+//        console.warn('constructor props=', props)
         this.state = {
             owner: {buttonChecked: "fiz"}
         }
@@ -28,5 +27,3 @@ export default class OwnerRG extends React.Component {
         )
     }
 }
-
-//export default connect(({ setOwner }) => ({ setOwner }))(OwnerRG);

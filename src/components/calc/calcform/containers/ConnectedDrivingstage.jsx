@@ -5,9 +5,8 @@ import { setDrivingstage } from '../../../../actions'
 
 const mapStateToProps = (state, props) => {
     return {
-        age: state.age
-        /* registration: state.registration,
-        fixedTerm: state.fixedTerm,*/
+        age: state.age.value,
+        drivingstage:state.drivingstage,
     }
 }
 const mapDispatchToProps = (dispatch, props) =>

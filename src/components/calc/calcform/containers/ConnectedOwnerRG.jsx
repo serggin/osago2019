@@ -10,6 +10,5 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch, props) =>
     bindActionCreators({ setOwner }, dispatch)
 
-
 const ConnectedOwnerRG = connect(mapStateToProps,mapDispatchToProps)(OwnerRG)
 export default ConnectedOwnerRG

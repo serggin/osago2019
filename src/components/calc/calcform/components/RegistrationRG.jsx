@@ -1,5 +1,4 @@
 import React from 'react'
-//import {calcContext} from '../../../App.jsx'
 import FormRadioGroup from "../../../form/FormRadioGroup.jsx";
 
 export default class RegistrationRG extends React.Component {

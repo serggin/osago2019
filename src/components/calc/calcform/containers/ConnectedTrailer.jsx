@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux'
 import Trailer from '../components/Trailer.jsx'
 import { setTrailer } from '../../../../actions'
 
-
 const mapStateToProps = (state, props) => {
     return {
         trailer:state.trailer,
@@ -11,7 +10,6 @@ const mapStateToProps = (state, props) => {
 }
 const mapDispatchToProps = (dispatch, props) =>
     bindActionCreators({ setTrailer }, dispatch)
-
 
 const ConnectedTrailer = connect(mapStateToProps,mapDispatchToProps)(Trailer)
 export default ConnectedTrailer

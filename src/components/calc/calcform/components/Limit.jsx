@@ -1,5 +1,4 @@
 import React from 'react'
-import {calcView} from '../../../App.jsx'
 import FormCheckbox1 from "../../../form/FormCheckbox1.jsx";
 
 export default class Limit extends React.Component {
@@ -7,25 +6,33 @@ export default class Limit extends React.Component {
         super(props)
         console.warn('constructor props=', props)
         this.state = {
-            limit: {selected: false,enabled:true, }
+           // limit: {selected: false,enabled:true,
+            selected: props.limit.value
         }
     }
-    assignedHandler(key, value) {
+   /* assignedHandler(key, value) {
         this.props.view.assign(key, value);
+    }*/
+
+    assignedHandler(value) {
+        this.props.setLimit({value:value});
+        this.setState({selected:value})
+    }
+    componentDidUpdate(prevProps) {
+        if (this.state.selected != this.props.limit.value)
+            this.setState({selected:this.props.limit.value})
     }
     render() {
-        console.log('**** limit'+this.limit)
+//        console.log('**** limit'+this.limit)
         return (
-
             <FormCheckbox1 name="limit" formlabel="Количество водителей ограничено"
                            id="limit"
                            labelProps={{className: "col-lg-12 label label-info"}}
                            label="Нет, не ограничено"
-                           selected={this.props.limit}
-                           enabled={this.state.limit.enabled}
-                           assigned={(v)=>this.assignedHandler('limit', v)}/>
-
-
+                           selected={this.state.selected}
+                           enabled={this.props.limit.disabled}
+                           assigned={(v)=>this.assignedHandler(v)}
+                           />
         )
     }
 }

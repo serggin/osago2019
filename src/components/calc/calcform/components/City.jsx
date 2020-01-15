@@ -23,19 +23,15 @@ export default class City extends React.Component {
 
     render() {
         const options = calcView.getOptions("city", this.props.regions.value);
-
-//                    const options = contextValue.calcView.getOptions("city", this.state.regions)
-//                    console.log('options=', options)
-                    return (
-                        <FormSelect name="city" formlabel="Территория преимущественного использования ТС"
-                                    labelProps={{className: "col-lg-12 label label-info mandatory-parameter"}}
-                                    options={options}
-                                    placeholder="Выберите место регистрации ТС"
-                                    assigned={(v) => this.props.setCity({value:v})}
-                                    selected={this.state.selected}
-                                    enabled={!this.state.disabled}
-                        />
-                    )
-
+        return (
+            <FormSelect name="city" formlabel="Территория преимущественного использования ТС"
+                labelProps={{className: "col-lg-12 label label-info mandatory-parameter"}}
+                options={options}
+                placeholder="Выберите место регистрации ТС"
+                assigned={(v) => this.props.setCity({value:v})}
+                selected={this.state.selected}
+                enabled={!this.state.disabled}
+            />
+        )
     }
 }

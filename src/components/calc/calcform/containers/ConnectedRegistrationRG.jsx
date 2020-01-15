@@ -10,6 +10,5 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch, props) =>
     bindActionCreators({ setRegistration }, dispatch)
 
-
 const ConnectedRegistrationRG = connect(mapStateToProps,mapDispatchToProps)(RegistrationRG)
 export default ConnectedRegistrationRG

@@ -5,8 +5,7 @@ import { setKbm } from '../../../../actions'
 
 const mapStateToProps = (state, props) => {
     return {
-        /* registration: state.registration,
-        fixedTerm: state.fixedTerm,*/
+        kbm: state.kbm,
     }
 }
 const mapDispatchToProps = (dispatch, props) =>

@@ -1,12 +1,11 @@
 import React from 'react'
 import {calcView} from '../../../App.jsx'
 import FormCheckbox1 from "../../../form/FormCheckbox1.jsx";
-//import {setCrime} from "../../../../actions";
 
 export default class Crime extends React.Component {
     constructor(props) {
         super(props)
-        console.warn('constructor props=', props)
+//        console.warn('constructor props=', props)
         this.state = {
             selected: props.crime.value
         }

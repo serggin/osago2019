@@ -7,8 +7,6 @@ const mapStateToProps = (state, props) => {
     return {
         regions: state.regions,
         city: state.city
-        /* registration: state.registration,
-        fixedTerm: state.fixedTerm,*/
     }
 }
 const mapDispatchToProps = (dispatch, props) =>

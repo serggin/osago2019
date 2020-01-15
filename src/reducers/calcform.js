@@ -1,10 +1,10 @@
 import {
     SET_OWNER, SET_REGISTRATION, SET_TYPETC, SET_TRAILER, SET_POWERTC,
-    SET_TERM, SET_FIXED_TERM, DISABLE_TERM,
+    SET_TERM, //SET_FIXED_TERM, DISABLE_TERM,
     SET_PERIOD, SET_REGIONS, SET_CITY,
-    SET_CRIME,
+    //SET_CRIME,
     SET_LIMIT, SET_AGE, SET_DRIVINGSTAGE,
-    SET_KBM, SET_PERIOD_KBM,
+    SET_KBM,// SET_PERIOD_KBM,
 } from '../actions/actionTypes'
 
 
@@ -38,7 +38,7 @@ export function typeTCReducer (state = 'tc22', action) {
             return state
     }
 }
-export function crimeReducer (state = {value: false, disabled: false}, action) {
+/*export function crimeReducer (state = {value: false, disabled: false}, action) {
     switch (action.type) {
         case SET_CRIME:
             //return {...state, ...{value:action.crime}}
@@ -47,7 +47,8 @@ export function crimeReducer (state = {value: false, disabled: false}, action) {
         default:
             return state
     }
-}
+}*/
+
 export function powerTCReducer (state = {value: 'p0', disabled: false}, action) {
     switch (action.type) {
         case SET_POWERTC:
@@ -68,14 +69,11 @@ export function trailerReducer (state = {value: false, disabled: true}, action) 
 
 
 
-export function termReducer (state = {value: 't10', fixed: false, disabled: false}, action) {
+export function termReducer (state = {value: 't10', fixed: true, disabled: true}, action) {
     switch (action.type) {
         case SET_TERM:
-            return {...state, ...{value:action.term}}
-        case SET_FIXED_TERM:
-            return {...state, ...{fixed:action.term}}
-        case DISABLE_TERM:
-            return {...state, ...{disabled:action.disabled}}
+            return {...state, ...action.term}
+
         default:
             return state
     }
@@ -103,15 +101,9 @@ export function regionsReducer (state = {value: 'r90', disabled: false},  action
     }
 }
 
-export function cityReducer (state = {value: null, disabled: false}, action) {
-    switch (action.type) {
-        case SET_CITY:
-            return {...state, ...action.city}
 
-        default:
-            return state
-    }
-}
+
+
 
 export function limitReducer (state = false, action) {
     switch (action.type) {
@@ -123,7 +115,7 @@ export function limitReducer (state = false, action) {
     }
 }
 
-export function ageReducer (state = 'de0', action) {
+/*export function ageReducer (state = 'de0', action) {
     switch (action.type) {
         case SET_AGE:
             return action.age
@@ -131,29 +123,49 @@ export function ageReducer (state = 'de0', action) {
         default:
             return state
     }
+}*/
+export function ageReducer (state = {value: 'de0', disabled: false},  action) {
+    switch (action.type) {
+        case SET_AGE:
+            return {...state, ...action.age}
+
+        default:
+            return state
+    }
 }
 
-export function drivingstageReducer (state = null, action) {
+export function cityReducer (state = {value: 'Москва', disabled: false}, action) {
+    switch (action.type) {
+        case SET_CITY:
+            return {...state, ...action.city}
+
+        default:
+            return state
+    }
+}
+
+
+//export function drivingstageReducer (state = 'de0', action) {
+export function drivingstageReducer (state = {value: 'СТАЖ 0', disabled: false},  action) {
     switch (action.type) {
         case SET_DRIVINGSTAGE:
-            return action.drivingstage
+            return {...state, ...action.drivingstage}
 
         default:
             return state
     }
 }
 
-export function kbmReducer (state = 'kbm1', action) {
+export function kbmReducer (state = {value: 'kbm15', fixed: false}, action) {
     switch (action.type) {
         case SET_KBM:
-            return action.kbm
-
+            return {...state, ...action.kbm}
         default:
             return state
     }
 }
 
-export function periodKbmReducer (state = null, action) {
+/*export function periodKbmReducer (state = '0', action) {
     switch (action.type) {
         case SET_PERIOD_KBM:
             return action.periodKbm
@@ -161,4 +173,4 @@ export function periodKbmReducer (state = null, action) {
         default:
             return state
     }
-}
+}*/

@@ -9,12 +9,12 @@ import ConnectedTerm from './calcform/containers/ConnectedTerm.jsx'
 import ConnectedPeriod from './calcform/containers/ConnectedPeriod.jsx'
 import ConnectedRegions from './calcform/containers/ConnectedRegions.jsx'
 import ConnectedCity from './calcform/containers/ConnectedCity.jsx'
-import ConnectedCrime from './calcform/containers/ConnectedCrime.jsx'
+//import ConnectedCrime from './calcform/containers/ConnectedCrime.jsx'
 import ConnectedLimit from './calcform/containers/ConnectedLimit.jsx'
 import ConnectedAge from './calcform/containers/ConnectedAge.jsx'
 import ConnectedDrivingstage from './calcform/containers/ConnectedDrivingstage.jsx'
 import ConnectedKbm from './calcform/containers/ConnectedKbm.jsx'
-import ConnectedPeriodKbm from './calcform/containers/ConnectedPeriodKbm.jsx'
+//import ConnectedPeriodKbm from './calcform/containers/ConnectedPeriodKbm.jsx'
 import {context} from '../App.jsx'
 
 export default class CalcForm extends React.Component {
@@ -35,12 +35,12 @@ export default class CalcForm extends React.Component {
                 <div><ConnectedPeriod context={context} /></div>
                 <div><ConnectedRegions context={context} /></div>
                 <div><ConnectedCity context={context} /></div>
-                <div><ConnectedCrime context={context} /></div>
+                {/*<div><ConnectedCrime context={context} /></div>*/}
                 <div><ConnectedLimit context={context} /></div>
                 <div><ConnectedAge context={context} /></div>
                 <div><ConnectedDrivingstage context={context} /></div>
                 <div><ConnectedKbm context={context} /></div>
-                <div><ConnectedPeriodKbm context={context} /></div>
+                {/*<div><ConnectedPeriodKbm context={context} /></div>*/}
             </div>
          )
     }

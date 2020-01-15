@@ -6,7 +6,6 @@ import { setPowerTC } from '../../../../actions'
 const mapStateToProps = (state, props) => {
     return {
         powerTC: state.powerTC,
-
     }
 }
 const mapDispatchToProps = (dispatch, props) =>

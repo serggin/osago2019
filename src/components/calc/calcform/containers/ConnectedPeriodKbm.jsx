@@ -5,10 +5,9 @@ import { setPeriodKbm } from '../../../../actions'
 
 const mapStateToProps = (state, props) => {
     return {
-        kbm: state.kbm
-        /* registration: state.registration,
-        fixedTerm: state.fixedTerm,*/
-    }
+        kbm: state.kbm.value,
+        periodKbm: state.periodKbm,
+     }
 }
 const mapDispatchToProps = (dispatch, props) =>
     bindActionCreators({ setPeriodKbm }, dispatch)
