@@ -4,4 +4,6 @@
 
 Одностраничное WEB-приложение.
 
-Технологичский стек: React+Redux, Webpack
+Технологический стек: React+Redux, Webpack.
+
+Работающее приложение: http://okatana.16mb.com/osago2019/
